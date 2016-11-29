@@ -23,7 +23,6 @@ public class EmailRegistrationDBTest {
     @Test
     public void searchUser() throws Exception {
         assertEquals(0, emailRegistrationDB.searchUser("{\"toBeVerified\":\"ywang289@jhu.edu\"}"));
-        //assertEquals(1, emailRegistrationDB.searchUser("{\"toBeVerified\":\"dchen78@jhu.edu\"}"));
     }
 
 }

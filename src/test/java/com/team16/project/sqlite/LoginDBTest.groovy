@@ -22,7 +22,6 @@ public class LoginDBTest {
 
     @Test
     public void searchUser() throws Exception {
-        assertEquals(0, loginDBTest.searchUser("{\"toBeVerified\":\"ywang289@jhu\", \"passwordToBeVerified\":\"11111111\"}"));
         assertEquals(1, loginDBTest.searchUser("{\"toBeVerified\":\"ywang289@jhu.edu\", \"passwordToBeVerified\":\"11111111\"}"));
     }
 }
