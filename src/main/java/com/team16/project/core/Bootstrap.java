@@ -22,7 +22,7 @@ public class Bootstrap {
         new PasswordController();
         new LoginController();
         new ItemDetailController();
-//yeah~
+//yeah~xiaoxiao
         new UploadUserPhotoController();
 
         MyAccountDB projectDB = new MyAccountDB();
