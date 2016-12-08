@@ -29,5 +29,7 @@ public class Bootstrap {
         // Create model and controller.
         MyAccountService model = new MyAccountService(projectDB);
         new MyAccountController(model);
+        
+        SubscribeSchedule subscribeSchedule = new SubscribeSchedule();
     }
 }
