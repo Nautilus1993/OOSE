@@ -13,7 +13,7 @@ public class PhoneRegistrationServiceTest {
     public PhoneRegistrationServiceTest() throws ParseException, MessagingException {
     }
 
-    int registrationCode = phoneRegistrationService.verifyPhone("{\"toBeVerified\":\"4433104264\"}");
+    int registrationCode = phoneRegistrationService.verfyPhone("{\"toBeVerified\":\"4433104264\"}");
 
     @Test
     // Do not run this test too often. This test actually sends text message to my phone :)
