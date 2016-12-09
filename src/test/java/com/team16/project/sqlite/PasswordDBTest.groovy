@@ -1,5 +1,6 @@
 package com.team16.project.sqlite
 
+import com.team16.project.Model.PasswordDB
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

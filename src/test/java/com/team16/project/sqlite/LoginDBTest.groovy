@@ -1,5 +1,6 @@
-package com.team16.project.sqlite;
+package com.team16.project.sqlite
 
+import com.team16.project.Model.LoginDB;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

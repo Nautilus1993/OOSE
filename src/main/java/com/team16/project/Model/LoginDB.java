@@ -1,4 +1,4 @@
-package com.team16.project.sqlite;
+package com.team16.project.Model;
 
 import com.team16.project.core.Bootstrap;
 import org.json.simple.JSONObject;

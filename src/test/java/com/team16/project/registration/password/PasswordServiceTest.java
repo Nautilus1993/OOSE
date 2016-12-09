@@ -1,6 +1,6 @@
 package com.team16.project.registration.password;
 
-import com.team16.project.sqlite.PasswordDB;
+import com.team16.project.Model.PasswordDB;
 import org.junit.Before;
 import org.junit.Test;
 

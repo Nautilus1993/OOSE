@@ -2,7 +2,7 @@ package com.team16.project.MyAccount;
 
 import com.google.gson.Gson;
 import com.team16.project.User.User;
-import com.team16.project.sqlite.MyAccountDB;
+import com.team16.project.Model.MyAccountDB;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
