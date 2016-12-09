@@ -3,6 +3,7 @@ package com.team16.project.core;
 
 import com.team16.project.Image.UploadUserPhotoController;
 import com.team16.project.Item.ItemDetailController;
+import com.team16.project.ItemList.ItemListController;
 import com.team16.project.Login.LoginController;
 import com.team16.project.MyAccount.MyAccountController;
 import com.team16.project.MyAccount.MyAccountService;
@@ -23,6 +24,7 @@ public class Bootstrap {
         new PasswordController();
         new LoginController();
         new ItemDetailController();
+        new ItemListController();
 //yeah~
         new UploadUserPhotoController();
 

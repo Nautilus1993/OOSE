@@ -54,6 +54,5 @@ public class LoginDB {
             return 0;
         }
     }
-
 }
 
