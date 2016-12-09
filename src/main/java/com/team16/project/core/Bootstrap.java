@@ -10,6 +10,7 @@ import com.team16.project.registration.email.EmailRegistrationController;
 import com.team16.project.registration.password.PasswordController;
 import com.team16.project.registration.phone.PhoneRegistrationController;
 import com.team16.project.sqlite.MyAccountDB;
+import com.team16.project.subscribe.SubscribeSchedule;
 
 import java.sql.SQLException;
 
