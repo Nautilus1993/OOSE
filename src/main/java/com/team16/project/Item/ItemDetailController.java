@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Collections;
 import java.util.HashMap;
 
-import static spark.Spark.*;
+import static spark.Spark.post;
 
 
 public class ItemDetailController {
@@ -21,7 +21,8 @@ public class ItemDetailController {
     }
 
     private void setupEndpoints(){
-        get(ITEM_DETAIL_API + "/:sessionId", "application/json", (request, response) -> {
+        post(ITEM_DETAIL_API + "/:sessionId", "application/json", (request, response) -> {
+        //get(ITEM_DETAIL_API + "/:sessionId", "application/json", (request, response) -> {
             String itemId = request.params(":sessionId");
             try{
                 HashMap<String, Object> item = itemDetailService.getItemDetailInfo(itemId);
