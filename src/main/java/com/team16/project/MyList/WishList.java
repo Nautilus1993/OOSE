@@ -1,4 +1,4 @@
-package com.team16.project.User.MyList;
+package com.team16.project.MyList;
 import java.util.ArrayList;
 
 /**
