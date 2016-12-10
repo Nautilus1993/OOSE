@@ -14,10 +14,10 @@ import static spark.Spark.*;
 public class UserPhotoController {
     private static final String USER_IMAGE_API = "/image";
     private final Logger logger = LoggerFactory.getLogger(UserPhotoController.class);
-    private UserPhotoService uploadUserPhotoService;
+    private UserPhotoService userPhotoService;
 
     public UserPhotoController(){
-        this.uploadUserPhotoService = new UserPhotoService();
+        this.userPhotoService = new UserPhotoService();
         setupEndpoints();
     }
 
@@ -35,7 +35,7 @@ public class UserPhotoController {
                 String name = json.get("name").getAsString();
                 String image = json.get("image").getAsString();
 
-                boolean result = uploadUserPhotoService.insertUserPhoto(name, image);
+                boolean result = userPhotoService.uploadUserPhoto(name, image);
                 System.out.println("result = " + result);
                 return Collections.EMPTY_MAP;
             }catch (Exception e){
@@ -48,7 +48,7 @@ public class UserPhotoController {
             try{
                 String imageName = req.params(":imagename");
                 System.out.println("request image name: " + imageName);
-                return "image";
+                return this.userPhotoService.downloadUserPhoto(imageName);
             }catch(Exception e){
                 e.printStackTrace();
                 return  Collections.EMPTY_MAP;
