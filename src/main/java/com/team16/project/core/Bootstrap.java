@@ -25,6 +25,7 @@ public class Bootstrap {
         new LoginController();
         new ItemDetailController();
         new ItemListController();
+        new WishController();
 //yeah~
         new UserPhotoController();
 
