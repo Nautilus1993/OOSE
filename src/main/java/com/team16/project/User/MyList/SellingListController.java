@@ -32,7 +32,7 @@ public class SellingListController {
 
     public void actions(){
         //TEST API
-        get("/helloworld", "application/json", (request, response) -> {
+        get("/sellingListDisplayTest", "application/json", (request, response) -> {
             try {
                 System.out.println("Request received!!!!");
                 ArrayList<Item> itemList = new ArrayList<Item>();
@@ -66,11 +66,25 @@ public class SellingListController {
             }
         }, new JsonTransformer());
 
+        //TEST API
+        post("/newItemTest/:sessionId", "application/json", (request, response) -> {
+            try {
+                System.out.println("Request received!!!!");
+                String sid = String.valueOf(request.params("sessionId"));
+                System.out.println("****sessionId: "+ sid);
+                return "I see you";
+            } catch(Exception e){
+                logger.error("Failed to create new entry");
+                response.status(500);
+                return Collections.EMPTY_MAP;
+            }
+        }, new JsonTransformer());
+
 
         //Display an user's selling list
         get(API_CONTEXT + "/display/:sessionId", "application/json", (request, response) -> {
             try {
-                System.out.println("Request received!!!!");
+                System.out.println("SellingListDisplay Request received!!!!");
                 ArrayList<Item> sellList = service.getSellingList(request);
                 return sellList;
             } catch(Exception e){
@@ -83,6 +97,7 @@ public class SellingListController {
         //Post an item
         post(API_CONTEXT + "/post/:sessionId", "application/json", (request, response) -> {
             try {
+                System.out.println("NewPost Request received!!!!");
                 service.addPost(request, response);
                 response.status(200);
             } catch(SellingListService.SellingListServiceException e){

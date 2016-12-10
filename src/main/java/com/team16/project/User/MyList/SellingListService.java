@@ -1,7 +1,9 @@
 package com.team16.project.User.MyList;
 
-import com.team16.project.Item.Item;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+import com.team16.project.Item.Item;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,8 +11,9 @@ import spark.Request;
 import spark.Response;
 
 import java.sql.*;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 
 
 /**
@@ -85,41 +88,54 @@ public class SellingListService {
     }
 
     public void addPost(Request request, Response response) throws SellingListServiceException{
-        //get request form info, collect by item object
-        Item item = new Gson().fromJson(request.body(), Item.class);
-
-        //connect to db, create sql, execute query
         Connection c = null;
-        String sql = "INSERT INTO item (sellerId, name, description, " +
-                "                       imgPath, postDate, availableDate," +
-                "                       expireDate, price, category1," +
-                "                       category2, isDelever, condition," +
-                "                       pickUpAddress, numOfLikes) " +
-                "             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // ###
         PreparedStatement stmt = null;
-        try {
+        try{
+            System.out.println(request.body());
+
+            //get request form info, collect by item object
+            Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
+            Item item = gson.fromJson(request.body(), Item.class);
+
+            //connect to db, create sql, execute query
+            String sql = "INSERT INTO item ( sellerId, name, description," +
+                    "                        imgPath, postDate, avialableDate," +
+                    "                       expireDate, price,category1," +
+                    "                       category2,isDeliver,condition," +
+                    "                       pickUpAddress, numOfLikes) " +
+                    "             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; // ###
+
+
             c = DriverManager.getConnection("jdbc:sqlite:ProjectDB.db");
             stmt = c.prepareStatement(sql);
             stmt.setInt(1, item.getSellerId());//how to bind an object to a sql here?
             stmt.setString(2, item.getName());
-            stmt.setString(3, item.getImgLink());
+            stmt.setString(3, item.getDesciption());
+            stmt.setString(4, item.getImgLink());
+            Date sqlPostDate = new Date(item.getPostDate().getTime());
+            stmt.setDate(5, sqlPostDate);
             Date sqlAvailableDate = new Date(item.getAvialableDate().getTime());
-            stmt.setDate(4, sqlAvailableDate);
+            stmt.setDate(6, sqlAvailableDate);
             Date sqlExpireDate = new Date(item.getExpireDate().getTime());
-            stmt.setDate(5, sqlExpireDate);
-            stmt.setDouble(6, item.getPrice());
-            stmt.setString(7, item.getCategory1());
-            stmt.setString(8, item.getCategory2());
-            stmt.setBoolean(9, item.isDeliver());
-            stmt.setString(10, item.getCondition());
-            stmt.setString(11, item.getPickUpAddress());
-            stmt.setInt(12, item.getNumOfLikes());
+            stmt.setDate(7, sqlExpireDate);
+            stmt.setDouble(8, item.getPrice());
+            stmt.setString(9, item.getCategory1());
+            stmt.setString(10, item.getCategory2());
+            stmt.setBoolean(11, item.isDeliver());
+            stmt.setString(12, item.getCondition());
+            stmt.setString(13, item.getPickUpAddress());
+            stmt.setInt(14, 0);
 
             Integer stat = stmt.executeUpdate();
             System.out.println(stat);//check update status
-        } catch(SQLException e) {
+        }catch(SQLException e) {
             logger.error("SellingListService.addPost: Failed to create new entry", e);
             throw new SellingListServiceException("SellingListService.addPost: Failed to create new entry", e);
+        }catch(JsonSyntaxException e){
+            logger.error("SellingListService.addPost: Failed to parse json", e);
+            throw new SellingListServiceException("SellingListService.addPost: Failed to create new entry", e);
+        }catch(Exception e){
+            e.printStackTrace();
         }finally {
             try {
                 stmt.close();

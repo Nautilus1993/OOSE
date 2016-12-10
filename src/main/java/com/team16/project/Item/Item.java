@@ -1,5 +1,7 @@
 package com.team16.project.Item;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -131,11 +133,27 @@ public class Item {
     public void setAvialableDate(Date avialableDate) {
         this.avialableDate = avialableDate;
     }
+    public void setAvialableDate(String avialableDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/mm/dd");
+        try {
+            this.avialableDate = sdf.parse(avialableDate);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+    }
     public Date getExpireDate() {
         return expireDate;
     }
     public void setExpireDate(Date expireDate) {
         this.expireDate = expireDate;
+    }
+    public void setExpireDate(String expireDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/mm/dd");
+        try {
+            this.expireDate = sdf.parse(expireDate);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
     }
 
     public int getNumOfLikes() {
