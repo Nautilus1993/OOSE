@@ -7,6 +7,7 @@ import com.team16.project.ItemList.ItemListController;
 import com.team16.project.Login.LoginController;
 import com.team16.project.MyAccount.MyAccountController;
 import com.team16.project.MyAccount.MyAccountService;
+import com.team16.project.MyList.WishList.WishController;
 import com.team16.project.registration.email.EmailRegistrationController;
 import com.team16.project.registration.password.PasswordController;
 import com.team16.project.registration.phone.PhoneRegistrationController;
@@ -26,7 +27,6 @@ public class Bootstrap {
         new ItemDetailController();
         new ItemListController();
         new WishController();
-//yeah~
         new UserPhotoController();
 
         MyAccountDB projectDB = new MyAccountDB();

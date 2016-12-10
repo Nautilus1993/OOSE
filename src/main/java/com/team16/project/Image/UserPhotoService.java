@@ -4,6 +4,7 @@ import com.team16.project.Model.UserPhotoDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -39,6 +40,14 @@ public class UserPhotoService {
         ImageIO.write(imageBuf, "png", f);
 
         return userPhotoDB.insertUserPhoto(name, image);
+    }
+
+    public String downloadUserPhoto(String name){
+        String filepath = userPhotoDir + name;
+        BASE64Encoder encoder = new BASE64Encoder();
+        File f = new File(filepath);
+        return "todo";
+
     }
 
 
