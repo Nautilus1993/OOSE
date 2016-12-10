@@ -24,7 +24,7 @@ public class Item {
     private String condition;
     private boolean isDeliver;
     private String pickUpAddress;
-    private String desciption;
+    private String description;
     private Date postDate;
     private Date avialableDate;
     private Date expireDate;
@@ -112,11 +112,11 @@ public class Item {
     }
 
     public String getDesciption() {
-        return desciption;
+        return description;
     }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getPostDate() {

@@ -96,6 +96,7 @@ public class SellingListService {
             //get request form info, collect by item object
             Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
             Item item = gson.fromJson(request.body(), Item.class);
+            System.out.println("******desc: "+ item.getDesciption());
 
             //connect to db, create sql, execute query
             String sql = "INSERT INTO item ( sellerId, name, description," +
