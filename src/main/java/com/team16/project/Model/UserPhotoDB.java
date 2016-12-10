@@ -19,8 +19,8 @@ public class UserPhotoDB {
 
             // query to insert an user photo
             String sql = "INSERT INTO Image (name, image) VALUES ("+ name + ", " + image + ");";
-            System.out.println(sql);
-            stm.executeUpdate(sql);
+            //System.out.println(sql);
+            //stm.executeUpdate(sql);
 
 
             stm.close();
