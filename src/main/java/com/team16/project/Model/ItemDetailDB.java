@@ -1,4 +1,4 @@
-package com.team16.project.sqlite;
+package com.team16.project.Model;
 
 import com.team16.project.core.Bootstrap;
 
@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.HashMap;
 
 public class ItemDetailDB {
@@ -20,9 +21,12 @@ public class ItemDetailDB {
             System.out.println("Connect database successfully");
             stm = conn.createStatement();
 
-            String sql = "SELECT name, itemId, price, category1, category2, isDeliver " +
-                    "FROM Item " +
-                    "WHERE itemId = 1";
+            String sql = "SELECT name, itemId, price, category1, category2, "
+            		+ "condition, isDeliver, pickUpAddress, description, "
+            		+ "avialableDate, expireDate "
+                    + "FROM Item "
+                    + "WHERE itemId = '" + itemId + "';";
+            
             ResultSet results = stm.executeQuery(sql);
 
             if(!results.isBeforeFirst()){
@@ -32,10 +36,15 @@ public class ItemDetailDB {
                 itemDetail.put("price", results.getString("price"));
                 itemDetail.put("category1", results.getString("category1"));
                 itemDetail.put("category2", results.getString("category2"));
-                itemDetail.put("isDeliver", results.getString("isDeliver"));
+                itemDetail.put("condition", results.getString("condition"));
+                itemDetail.put("isDeliver", results.getString("isDeliver"));              
+                itemDetail.put("pickUpAddress", results.getString("pickUpAddress"));
+                itemDetail.put("description", results.getString("description"));
+                itemDetail.put("avialableDate", results.getString("avialableDate"));
+                itemDetail.put("expireDate", results.getString("expireDate"));
+                
                 System.out.println("Find item: " + results.getString("itemId"));
             }
-
             results.close();
             stm.close();
             conn.close();

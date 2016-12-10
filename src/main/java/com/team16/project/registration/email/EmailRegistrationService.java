@@ -1,7 +1,7 @@
 package com.team16.project.registration.email;
 
 
-import com.team16.project.sqlite.EmailRegistrationDB;
+import com.team16.project.Model.EmailRegistrationDB;
 import org.json.simple.parser.ParseException;
 
 import javax.mail.MessagingException;

@@ -1,4 +1,4 @@
-package com.team16.project.sqlite
+package com.team16.project.Login;
 
 import com.team16.project.Model.LoginDB;
 import org.junit.After;
@@ -7,7 +7,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class LoginDBTest {
+/**
+ * Created by DaChen on 12/10/16.
+ */
+public class LoginServiceTest {
     LoginDB loginDBTest;
 
     @Before
@@ -19,10 +22,8 @@ public class LoginDBTest {
     public void tearDown() throws Exception {}
 
     @Test
-    public void postQuery() throws Exception {}
-
-    @Test
-    public void searchUser() throws Exception {
+    public void verifyLogin() throws Exception {
         assertEquals(1, loginDBTest.searchUser("{\"toBeVerified\":\"ywang289@jhu.edu\", \"passwordToBeVerified\":\"11111111\"}"));
     }
+
 }

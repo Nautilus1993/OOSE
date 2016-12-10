@@ -1,6 +1,6 @@
 package com.team16.project.Item;
 
-import com.team16.project.sqlite.ItemDetailDB;
+import com.team16.project.Model.ItemDetailDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

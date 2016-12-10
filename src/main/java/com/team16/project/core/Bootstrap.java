@@ -1,17 +1,19 @@
 package com.team16.project.core;
 
 
-import com.team16.project.Image.UploadUserPhotoController;
+import com.team16.project.Image.UserPhotoController;
 import com.team16.project.Item.ItemDetailController;
+import com.team16.project.ItemList.ItemListController;
 import com.team16.project.Login.LoginController;
+import com.team16.project.Model.MyAccountDB;
 import com.team16.project.MyAccount.MyAccountController;
 import com.team16.project.MyAccount.MyAccountService;
-import com.team16.project.User.MyList.SellingListController;
-import com.team16.project.User.MyList.SellingListService;
+import com.team16.project.MyList.SellingList.SellingListController;
+import com.team16.project.MyList.SellingList.SellingListService;
+import com.team16.project.MyList.WishList.WishController;
 import com.team16.project.registration.email.EmailRegistrationController;
 import com.team16.project.registration.password.PasswordController;
 import com.team16.project.registration.phone.PhoneRegistrationController;
-import com.team16.project.sqlite.MyAccountDB;
 import com.team16.project.subscribe.SubscribeSchedule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +32,10 @@ public class Bootstrap {
         new PasswordController();
         new LoginController();
         new ItemDetailController();
-        new UploadUserPhotoController();
+        new UserPhotoController();
+        new ItemListController();
+        new WishController();
+        new UserPhotoController();
 
         MyAccountDB projectDB = new MyAccountDB();
         // Create model and controller.

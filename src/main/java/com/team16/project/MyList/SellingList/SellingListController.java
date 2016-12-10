@@ -1,4 +1,4 @@
-package com.team16.project.User.MyList;
+package com.team16.project.MyList.SellingList;
 
 import com.team16.project.Item.Item;
 import com.team16.project.core.JsonTransformer;

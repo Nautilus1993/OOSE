@@ -5,7 +5,7 @@ import org.json.simple.parser.ParseException;
 import javax.mail.MessagingException;
 import java.sql.SQLException;
 
-import com.team16.project.sqlite.LoginDB;
+import com.team16.project.Model.LoginDB;
 
 public class LoginService {
     private LoginDB loginDB;

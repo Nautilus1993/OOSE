@@ -1,6 +1,6 @@
 package com.team16.project.registration.email;
 
-import com.team16.project.sqlite.EmailRegistrationDB;
+import com.team16.project.Model.EmailRegistrationDB;
 import org.junit.Before;
 import org.junit.Test;
 

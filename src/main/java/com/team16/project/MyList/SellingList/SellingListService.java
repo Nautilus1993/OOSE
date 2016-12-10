@@ -1,4 +1,4 @@
-package com.team16.project.User.MyList;
+package com.team16.project.MyList.SellingList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
