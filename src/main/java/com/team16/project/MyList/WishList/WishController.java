@@ -1,11 +1,11 @@
-package com.team16.project.wishes;
+package com.team16.project.MyList.WishList;
 
 import com.team16.project.core.JsonTransformer;
 
 import static spark.Spark.post;
 
 public class WishController {
-    private static final String WISHES_API = "/wishes";
+    private static final String WISHES_API = "/WishList";
     private WishService wishService;
 
     public WishController() {

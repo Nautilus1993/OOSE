@@ -1,4 +1,4 @@
-package com.team16.project.wishes;
+package com.team16.project.MyList.WishList;
 
 import com.team16.project.core.Bootstrap;
 import org.json.simple.JSONObject;

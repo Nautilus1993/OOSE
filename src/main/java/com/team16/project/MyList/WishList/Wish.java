@@ -1,4 +1,4 @@
-package com.team16.project.wishes;
+package com.team16.project.MyList.WishList;
 
 public class Wish {
     private String name;
