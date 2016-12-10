@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Date;
 import java.util.HashMap;
 
 public class ItemDetailDB {
@@ -23,7 +22,7 @@ public class ItemDetailDB {
 
             String sql = "SELECT name, itemId, price, category1, category2, "
             		+ "condition, isDeliver, pickUpAddress, description, "
-            		+ "avialableDate, expireDate "
+            		+ "avialableDate, expireDate, imgPath "
                     + "FROM Item "
                     + "WHERE itemId = '" + itemId + "';";
             
@@ -42,6 +41,7 @@ public class ItemDetailDB {
                 itemDetail.put("description", results.getString("description"));
                 itemDetail.put("avialableDate", results.getString("avialableDate"));
                 itemDetail.put("expireDate", results.getString("expireDate"));
+                itemDetail.put("imgPath", results.getString("imgPath"));
                 
                 System.out.println("Find item: " + results.getString("itemId"));
             }
