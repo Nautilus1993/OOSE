@@ -15,7 +15,7 @@ import static spark.Spark.post;
 
 public class MyAccountController {
 
-    private static final String API_CONTEXT = "/login_test";
+    private static final String API_CONTEXT = "";
 
     public final MyAccountService myAccountService;
 
