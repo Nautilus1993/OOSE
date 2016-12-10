@@ -11,18 +11,18 @@ import java.util.Collections;
 
 import static spark.Spark.*;
 
-public class UploadUserPhotoController {
-    private static final String USER_IMAGE_API = "/uploadimage";
-    private final Logger logger = LoggerFactory.getLogger(UploadUserPhotoController.class);
-    private UploadUserPhotoService uploadUserPhotoService;
+public class UserPhotoController {
+    private static final String USER_IMAGE_API = "/image";
+    private final Logger logger = LoggerFactory.getLogger(UserPhotoController.class);
+    private UserPhotoService uploadUserPhotoService;
 
-    public UploadUserPhotoController(){
-        this.uploadUserPhotoService = new UploadUserPhotoService();
+    public UserPhotoController(){
+        this.uploadUserPhotoService = new UserPhotoService();
         setupEndpoints();
     }
 
     private void setupEndpoints(){
-        post(USER_IMAGE_API, "application/json", (req, res)->{
+        post(USER_IMAGE_API + "/upload", "application/json", (req, res)->{
             try{
                 String imageReceived = req.body();
 
@@ -43,5 +43,17 @@ public class UploadUserPhotoController {
                 return Collections.EMPTY_MAP;
             }
         }, new JsonTransformer());
+
+        get(USER_IMAGE_API + "/download/:imagename", "application/json", (req, res) -> {
+            try{
+                String imageName = req.params(":imagename");
+                System.out.println("request image name: " + imageName);
+                return "image";
+            }catch(Exception e){
+                e.printStackTrace();
+                return  Collections.EMPTY_MAP;
+            }
+        }, new JsonTransformer());
+
     }
 }

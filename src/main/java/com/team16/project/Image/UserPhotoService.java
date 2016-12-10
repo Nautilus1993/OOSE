@@ -10,14 +10,13 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.Base64;
 
-public class UploadUserPhotoService {
-    public static String userPhotoDir = "";
+public class UserPhotoService {
+    public static String userPhotoDir = "./images/userphoto/";
     private UserPhotoDB userPhotoDB;
-    private final Logger logger = LoggerFactory.getLogger(UploadUserPhotoService.class);
+    private final Logger logger = LoggerFactory.getLogger(UserPhotoService.class);
 
-    public UploadUserPhotoService(){
+    public UserPhotoService(){
         this.userPhotoDB = new UserPhotoDB();
     }
 
@@ -34,12 +33,13 @@ public class UploadUserPhotoService {
             logger.debug("Buffered image is null");
         }
 
-        String uploadFile = "./user.png";
+        String uploadFile = userPhotoDir + "user.jpg";
         logger.debug("Image file path = " + uploadFile);
         File f = new File(uploadFile);
         ImageIO.write(imageBuf, "png", f);
 
         return userPhotoDB.insertUserPhoto(name, image);
     }
+
 
 }

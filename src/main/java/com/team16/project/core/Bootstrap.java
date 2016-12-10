@@ -1,7 +1,7 @@
 package com.team16.project.core;
 
 
-import com.team16.project.Image.UploadUserPhotoController;
+import com.team16.project.Image.UserPhotoController;
 import com.team16.project.Item.ItemDetailController;
 import com.team16.project.ItemList.ItemListController;
 import com.team16.project.Login.LoginController;
@@ -26,7 +26,7 @@ public class Bootstrap {
         new ItemDetailController();
         new ItemListController();
 //yeah~
-        new UploadUserPhotoController();
+        new UserPhotoController();
 
         MyAccountDB projectDB = new MyAccountDB();
         // Create model and controller.
