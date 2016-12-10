@@ -17,7 +17,7 @@ public class UploadUserPhotoController {
     }
 
     private void setupEndpoints(){
-        post(USER_IMAGE_API + "/:sessionId", "application/json", (req, res)->{
+        post(USER_IMAGE_API, "application/json", (req, res)->{
             try{
                 String imageReceived = req.body();
                 System.out.println("Received UserPhoto from Client: " + imageReceived);

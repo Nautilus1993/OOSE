@@ -22,7 +22,7 @@ public class ItemDetailDB {
 
             String sql = "SELECT name, itemId, price, category1, category2, isDeliver " +
                     "FROM Item " +
-                    "WHERE itemId = 1";
+                    "WHERE itemId = 2";
             ResultSet results = stm.executeQuery(sql);
 
             if(!results.isBeforeFirst()){
