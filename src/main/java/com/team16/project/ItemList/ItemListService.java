@@ -4,6 +4,7 @@ import com.team16.project.Model.ItemListDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ItemListService {
@@ -14,7 +15,7 @@ public class ItemListService {
         this.itemListDB = new ItemListDB();
     }
 
-    public HashMap<String, Object> getItemListInfo(String topCategory, String subCategory) throws itemListServiceException {
+    public ArrayList<HashMap<String, Object>> getItemListInfo(String topCategory, String subCategory) throws itemListServiceException {
         return itemListDB.getItemListInfo(topCategory, subCategory);
     }
 

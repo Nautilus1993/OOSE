@@ -3,13 +3,14 @@ package com.team16.project.Model;
 import com.team16.project.core.Bootstrap;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ItemListDB {
-    public HashMap<String, Object> getItemListInfo(String topCategory, String subCategory){
+    public ArrayList<HashMap<String,Object>> getItemListInfo(String topCategory, String subCategory){
         Connection conn = null;
         PreparedStatement stm = null;
-        HashMap<String, Object> itemList = new HashMap<String, Object>();
+        ArrayList<HashMap<String, Object>> itemList = new ArrayList<HashMap<String, Object>>();
         try{
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection(Bootstrap.DATABASE);
@@ -17,7 +18,7 @@ public class ItemListDB {
             System.out.println("Connect database successfully");
             //stm = conn.createStatement();
 
-            String sql = "SELECT name, itemId, price, category1, category2, isDeliver " +
+            String sql = "SELECT name, itemId, price, category1, category2, isDeliver, imgPath, condition " +
                     "FROM Item " +
                     "WHERE category1 = ? AND category2 = ?";
 
@@ -30,12 +31,18 @@ public class ItemListDB {
             if(!results.isBeforeFirst()){
                 System.out.println("Item does not exist!");
             }else{
-                itemList.put("name", results.getString("name"));
-                itemList.put("price", results.getString("price"));
-                itemList.put("category1", results.getString("category1"));
-                itemList.put("category2", results.getString("category2"));
-                itemList.put("isDeliver", results.getString("isDeliver"));
-                System.out.println("Find item: " + results.getString("itemId"));
+                while (results.next()) {
+                    HashMap<String, Object> singleItem = new HashMap<>();
+                    singleItem.put("name", results.getString("name"));
+                    singleItem.put("price", results.getString("price"));
+                    singleItem.put("category1", results.getString("category1"));
+                    singleItem.put("category2", results.getString("category2"));
+                    singleItem.put("isDeliver", results.getString("isDeliver"));
+                    singleItem.put("imgPath", results.getString("imgPath"));
+                    singleItem.put("condition", results.getString("condition"));
+                    itemList.add(singleItem);
+                    System.out.println("Find item: " + results.getString("itemId"));
+                }
             }
 
             results.close();
