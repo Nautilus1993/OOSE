@@ -23,7 +23,7 @@ public class LoginServiceTest {
 
     @Test
     public void verifyLogin() throws Exception {
-        assertEquals(1, loginDBTest.searchUser("{\"toBeVerified\":\"ywang289@jhu.edu\", \"passwordToBeVerified\":\"11111111\"}"));
+        assertEquals("1", loginDBTest.searchUser("{\"toBeVerified\":\"ywang289@jhu.edu\", \"passwordToBeVerified\":\"11111111\"}"));
     }
 
 }
