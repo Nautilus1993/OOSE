@@ -34,8 +34,8 @@ public class LoginDB {
         }
     }
 
-    public int searchUser(String body) throws ParseException, SQLException, MessagingException {
-        String query = "SELECT email, password " + "FROM UserLogin WHERE email = ? AND password = ?";
+    public String searchUser(String body) throws ParseException, SQLException, MessagingException {
+        String query = "SELECT userId " + "FROM UserLogin WHERE email = ? AND password = ?";
         JSONObject jsonObject = (JSONObject) parser.parse(body);
         String emailToBeVerified = (String) jsonObject.get(TO_BE_VERIFIED);
         String passwordToBeVerified = (String) jsonObject.get(PASSWORD_TO_BE_VERIFIED);
@@ -46,12 +46,13 @@ public class LoginDB {
             statement.setString(1, emailToBeVerified);
             statement.setString(2, passwordToBeVerified);
             resultSet = statement.executeQuery();
-            resultSet.getString(USER_EMAIL);
+
+            String sqlResult = resultSet.getString("userId");
             postQuery();
-            return 1;
+            return sqlResult;
         } catch (SQLException e) {
             postQuery();
-            return 0;
+            return "0";
         }
     }
 }

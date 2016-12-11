@@ -7,6 +7,7 @@ import com.team16.project.core.JsonTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.SQLException;
 import java.util.Collections;
 
 import static spark.Spark.*;
@@ -16,7 +17,7 @@ public class UserPhotoController {
     private final Logger logger = LoggerFactory.getLogger(UserPhotoController.class);
     private UserPhotoService userPhotoService;
 
-    public UserPhotoController(){
+    public UserPhotoController() throws SQLException{
         this.userPhotoService = new UserPhotoService();
         setupEndpoints();
     }
@@ -44,7 +45,7 @@ public class UserPhotoController {
             }
         }, new JsonTransformer());
 
-        get(USER_IMAGE_API + "/download/:imagename", "application/json", (req, res) -> {
+        get(USER_IMAGE_API + "/download/:imagename", (req, res) -> {
             try{
                 String imageName = req.params(":imagename");
                 System.out.println("request image name: " + imageName);
@@ -53,7 +54,7 @@ public class UserPhotoController {
                 e.printStackTrace();
                 return  Collections.EMPTY_MAP;
             }
-        }, new JsonTransformer());
+        });
 
     }
 }

@@ -1,11 +1,11 @@
 package com.team16.project.Login;
 
+
+import com.team16.project.Model.LoginDB;
 import org.json.simple.parser.ParseException;
 
 import javax.mail.MessagingException;
 import java.sql.SQLException;
-
-import com.team16.project.Model.LoginDB;
 
 public class LoginService {
     private LoginDB loginDB;
@@ -14,7 +14,7 @@ public class LoginService {
         loginDB = new LoginDB();
     }
 
-    int verifyLogin(String body) throws ParseException, SQLException, MessagingException {
+    String verifyLogin(String body) throws ParseException, SQLException, MessagingException {
         return loginDB.searchUser(body);
     }
 }

@@ -34,6 +34,7 @@ public class ItemListDB {
                 while (results.next()) {
                     HashMap<String, Object> singleItem = new HashMap<>();
                     singleItem.put("name", results.getString("name"));
+                    singleItem.put("itemId", results.getString("itemId"));
                     singleItem.put("price", results.getString("price"));
                     singleItem.put("category1", results.getString("category1"));
                     singleItem.put("category2", results.getString("category2"));

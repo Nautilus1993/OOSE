@@ -31,9 +31,10 @@ public class ItemDetailTest {
     	expect.put("category1", "1");
     	expect.put("category2", "1");
     	expect.put("condition", "Perfect");
-    	expect.put("isDeliver", "true");              
-    	expect.put("pickUpAddress", "10 Art Museum Dr, Baltimore, MD21218");
-    	expect.put("description", "Adjustable bed sides allow you to use mattresses of different thicknesses. "
+    	expect.put("isDeliver", "1");              
+    	expect.put("pickUpAddress", "10 Art Museum Dr, Baltimore, MD 21218");
+		expect.put("imgPath", "http://images.cb2.com/is/image/CB2/CeciliaQueenBedSHS16_1x1/$web_spilllarge3$/160718121026/cecilia-queen-bed.jpg");
+		expect.put("description", "Adjustable bed sides allow you to use mattresses of different thicknesses. "
     			+ "16 slats of layer-glued birch adjust to your body weight and increase the suppleness of the mattress.");
     	expect.put("avialableDate", "2016-12-31");
     	expect.put("expireDate", "2017-01-31");
@@ -57,6 +58,7 @@ public class ItemDetailTest {
     	expect.put("condition", "Perfect");
     	expect.put("isDeliver", "true");              
     	expect.put("pickUpAddress", "10 Art Museum Dr, Baltimore, MD21218");
+		expect.put("imgPath", "http://images.cb2.com/is/image/CB2/CeciliaQueenBedSHS16_1x1/$web_spilllarge3$/160718121026/cecilia-queen-bed.jpg");
     	expect.put("description", "Adjustable bed sides allow you to use mattresses of different thicknesses. "
     			+ "16 slats of layer-glued birch adjust to your body weight and increase the suppleness of the mattress.");
     	expect.put("avialableDate", "2016-12-31");

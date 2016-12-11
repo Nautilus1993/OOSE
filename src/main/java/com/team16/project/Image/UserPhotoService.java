@@ -1,6 +1,5 @@
 package com.team16.project.Image;
 
-import com.team16.project.Model.UserPhotoDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Decoder;
@@ -9,13 +8,14 @@ import sun.misc.BASE64Encoder;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.sql.SQLException;
 
 public class UserPhotoService {
-    public static String userPhotoDir = "./images/userphoto/";
+    public static String userPhotoDir = "./images/userphotos/";
     private UserPhotoDB userPhotoDB;
     private final Logger logger = LoggerFactory.getLogger(UserPhotoService.class);
 
-    public UserPhotoService(){
+    public UserPhotoService() throws SQLException {
         this.userPhotoDB = new UserPhotoDB();
     }
 
@@ -32,12 +32,12 @@ public class UserPhotoService {
             logger.debug("Buffered image is null");
         }
 
-        String uploadFile = userPhotoDir + "user.jpg";
+        String uploadFile = userPhotoDir + "user.png";
         logger.debug("Image file path = " + uploadFile);
         File f = new File(uploadFile);
         ImageIO.write(imageBuf, "png", f);
 
-        return userPhotoDB.insertUserPhoto(name, image);
+        return userPhotoDB.insertUserPhoto(name, uploadFile);
     }
 
     public String downloadUserPhoto(String name){
