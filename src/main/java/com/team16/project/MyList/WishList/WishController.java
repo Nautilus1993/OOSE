@@ -18,5 +18,12 @@ public class WishController {
         {
             return wishService.listWishes(req.body());
         }, new JsonTransformer());
+
+        post(WISHES_API + "/remove", (req, res) ->
+        {
+            return wishService.removeWish(req.body());
+        });
     }
+
+
 }
