@@ -7,13 +7,15 @@ public class Wish {
     private String price;
     private String availableDate;
     private String expirationDate;
+    private String itemId;
 
-    public Wish(String name, String url, String condition, String price, String availableDate, String expirationDate) {
+    public Wish(String name, String url, String condition, String price, String availableDate, String expirationDate, String itemId) {
         this.name = name;
         this.url = url;
         this.condition = condition;
         this.price = price;
         this.availableDate = availableDate;
         this.expirationDate = expirationDate;
+        this.itemId = itemId;
     }
 }

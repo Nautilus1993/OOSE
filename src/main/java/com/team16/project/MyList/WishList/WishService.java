@@ -22,6 +22,26 @@ public class WishService {
         parser = new JSONParser();
     }
 
+    public int removeWish(String body) throws ParseException {
+        JSONObject jsonObject = (JSONObject) parser.parse(body);
+        String userId = (String) jsonObject.get("userId");
+        String itemId = (String) jsonObject.get("itemId");
+
+        String query = "DELETE FROM WishList " + "WHERE userId = ?" + " AND itemId = ?";
+        try {
+            connection =  DriverManager.getConnection(Bootstrap.DATABASE);
+            statement = connection.prepareStatement(query);
+            statement.setString(1, userId);
+            statement.setString(2, itemId);
+            statement.executeUpdate();
+            System.out.print("Successfully removed wish");
+            return 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public List<Wish> listWishes(String body)  {
         String query = "SELECT * " + "FROM WishList NATURAL JOIN Item NATURAL JOIN UserDetail " + "WHERE WishList.userId = ?";
         JSONObject jsonObject = null;
@@ -58,7 +78,7 @@ public class WishService {
         try {
             while (resultSet.next()) {
                 wishes.add(new Wish(resultSet.getString("name"), resultSet.getString("imgPath"),
-                        resultSet.getString("condition"), resultSet.getString("price"), resultSet.getString("avialableDate"), resultSet.getString("expireDate")));
+                        resultSet.getString("condition"), resultSet.getString("price"), resultSet.getString("avialableDate"), resultSet.getString("expireDate"), resultSet.getString("itemId")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
