@@ -36,6 +36,7 @@ public class Bootstrap {
         new ItemListController();
         new WishController();
         new UserPhotoController();
+        new SubscribeController();
 
         MyAccountDB projectDB = new MyAccountDB();
         // Create model and controller.
