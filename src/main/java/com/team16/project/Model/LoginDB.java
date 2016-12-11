@@ -47,8 +47,9 @@ public class LoginDB {
             statement.setString(2, passwordToBeVerified);
             resultSet = statement.executeQuery();
 
+            String sqlResult = resultSet.getString("userId");
             postQuery();
-            return resultSet.getString("userId");
+            return sqlResult;
         } catch (SQLException e) {
             postQuery();
             return "0";
