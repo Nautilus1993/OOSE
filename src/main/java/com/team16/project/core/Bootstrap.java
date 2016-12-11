@@ -44,7 +44,7 @@ public class Bootstrap {
         MyAccountService model = new MyAccountService(projectDB);
         new MyAccountController(model);
         
-        SubscribeSchedule subscribeSchedule = new SubscribeSchedule();
+        // SubscribeSchedule subscribeSchedule = new SubscribeSchedule();
 
         try {
             SellingListService ser = new SellingListService();
