@@ -96,15 +96,14 @@ public class SellingListService {
             //get request form info, collect by item object
             Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();
             Item item = gson.fromJson(request.body(), Item.class);
-            System.out.println("******desc: "+ item.getDesciption());
 
             //connect to db, create sql, execute query
             String sql = "INSERT INTO item ( sellerId, name, description," +
                     "                        imgPath, postDate, avialableDate," +
                     "                       expireDate, price,category1," +
                     "                       category2,isDeliver,condition," +
-                    "                       pickUpAddress, numOfLikes) " +
-                    "             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; // ###
+                    "                       pickUpAddress, numOfLikes, contactOptions) " +
+                    "             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; // ###
 
 
             c = DriverManager.getConnection("jdbc:sqlite:ProjectDB.db");
@@ -115,10 +114,14 @@ public class SellingListService {
             stmt.setString(4, item.getImgLink());
             Date sqlPostDate = new Date(item.getPostDate().getTime());
             stmt.setDate(5, sqlPostDate);
-            Date sqlAvailableDate = new Date(item.getAvialableDate().getTime());
-            stmt.setDate(6, sqlAvailableDate);
-            Date sqlExpireDate = new Date(item.getExpireDate().getTime());
-            stmt.setDate(7, sqlExpireDate);
+            if(item.getAvialableDate() != null) {
+                Date sqlAvailableDate = new Date(item.getAvialableDate().getTime());
+                stmt.setDate(6, sqlAvailableDate);
+            }
+            if(item.getExpireDate() != null) {
+                Date sqlExpireDate = new Date(item.getExpireDate().getTime());
+                stmt.setDate(7, sqlExpireDate);
+            }
             stmt.setDouble(8, item.getPrice());
             stmt.setString(9, item.getCategory1());
             stmt.setString(10, item.getCategory2());
@@ -126,6 +129,7 @@ public class SellingListService {
             stmt.setString(12, item.getCondition());
             stmt.setString(13, item.getPickUpAddress());
             stmt.setInt(14, 0);
+            stmt.setString(15, item.getContactMethods().toString());
 
             Integer stat = stmt.executeUpdate();
             System.out.println(stat);//check update status
