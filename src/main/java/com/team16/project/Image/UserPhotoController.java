@@ -7,6 +7,7 @@ import com.team16.project.core.JsonTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.sql.SQLException;
 import java.util.Collections;
 
 import static spark.Spark.*;
@@ -16,7 +17,7 @@ public class UserPhotoController {
     private final Logger logger = LoggerFactory.getLogger(UserPhotoController.class);
     private UserPhotoService userPhotoService;
 
-    public UserPhotoController(){
+    public UserPhotoController() throws SQLException{
         this.userPhotoService = new UserPhotoService();
         setupEndpoints();
     }
