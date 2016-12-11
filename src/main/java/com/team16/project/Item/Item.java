@@ -133,14 +133,14 @@ public class Item {
     public void setAvialableDate(Date avialableDate) {
         this.avialableDate = avialableDate;
     }
-    public void setAvialableDate(String avialableDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/mm/dd");
-        try {
-            this.avialableDate = sdf.parse(avialableDate);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
-    }
+//    public void setAvialableDate(String avialableDate) {
+//        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/mm/dd");
+//        try {
+//            this.avialableDate = sdf.parse(avialableDate);
+//        }catch (ParseException e){
+//            e.printStackTrace();
+//        }
+//    }
     public Date getExpireDate() {
         return expireDate;
     }
