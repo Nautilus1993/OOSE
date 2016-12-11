@@ -44,7 +44,7 @@ public class UserPhotoController {
             }
         }, new JsonTransformer());
 
-        get(USER_IMAGE_API + "/download/:imagename", "application/json", (req, res) -> {
+        get(USER_IMAGE_API + "/download/:imagename", (req, res) -> {
             try{
                 String imageName = req.params(":imagename");
                 System.out.println("request image name: " + imageName);
@@ -53,7 +53,7 @@ public class UserPhotoController {
                 e.printStackTrace();
                 return  Collections.EMPTY_MAP;
             }
-        }, new JsonTransformer());
+        });
 
     }
 }

@@ -32,7 +32,7 @@ public class UserPhotoService {
             logger.debug("Buffered image is null");
         }
 
-        String uploadFile = userPhotoDir + "user.jpg";
+        String uploadFile = userPhotoDir + "user.png";
         logger.debug("Image file path = " + uploadFile);
         File f = new File(uploadFile);
         ImageIO.write(imageBuf, "png", f);
