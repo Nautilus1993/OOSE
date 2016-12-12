@@ -11,9 +11,8 @@ import spark.Request;
 import spark.Response;
 
 import java.sql.*;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
 
 
 /**
@@ -24,19 +23,20 @@ public class SellingListService {
 
     public ArrayList<Item> getSellingList(Request request) throws SellingListServiceException{
         //get the userId from request
+        System.out.println("****request body = " + request.body());
         Integer userId = Integer.valueOf(request.params(":sessionId"));
 
         //connect to db, create sql, query the result
         Connection c = null;
         PreparedStatement stmt = null;
-        String sql = "SELECT * FROM Item where itemId in (SELECT itemId FROM SellingList WHERE userId = ?)";
+        String sql = "SELECT * FROM Item WHERE sellerId = ?";
         JSONParser parser = new JSONParser();
         ResultSet rs = null;
 
         //result list
         ArrayList<Item> sellList = new ArrayList<Item>();
 
-
+        //db
         try {
             c = DriverManager.getConnection("jdbc:sqlite:ProjectDB.db");
             stmt = c.prepareStatement(sql);
@@ -54,10 +54,11 @@ public class SellingListService {
                 currItem.setCondition(rs.getString("condition"));
                 currItem.setDeliver(rs.getBoolean("isDeliver"));
                 if(rs.getString("avialableDate") != null){
-                    currItem.setAvialableDate(sdf.parse(rs.getString("avialableDate")));
+                    System.out.println("****date="+ rs.getDate("avialableDate"));
+                    currItem.setAvialableDate(rs.getDate("avialableDate"));
                 }
                 if(rs.getString("expireDate") != null){
-                    currItem.setExpireDate(sdf.parse(rs.getString("expireDate")));
+                    currItem.setExpireDate(rs.getDate("expireDate"));
                 }
                 sellList.add(currItem);
 
