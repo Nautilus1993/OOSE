@@ -21,10 +21,11 @@ public class ItemDetailController {
     }
 
     private void setupEndpoints(){
-        get(ITEM_DETAIL_API + "/:itemId", "application/json", (request, response) -> {
+        get(ITEM_DETAIL_API + "/:userId/:itemId", "application/json", (request, response) -> {
+            String userId = request.params(":userId");
             String itemId = request.params(":itemId");
             try{
-                HashMap<String, Object> item = itemDetailService.getItemDetailInfo(itemId);
+                HashMap<String, Object> item = itemDetailService.getItemDetailInfo(itemId, userId);
                 System.out.println("Item detail info: " + item);         
                 return item;
             }catch(ItemDetailService.itemDetailServiceException ex) {

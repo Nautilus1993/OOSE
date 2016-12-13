@@ -34,7 +34,8 @@ public class WishService {
             statement.setString(1, userId);
             statement.setString(2, itemId);
             statement.executeUpdate();
-            postQuery();
+            statement.close();
+            connection.close();
             System.out.print("Successfully removed wish");
             return 1;
         } catch (SQLException e) {

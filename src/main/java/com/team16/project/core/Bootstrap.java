@@ -15,7 +15,6 @@ import com.team16.project.registration.email.EmailRegistrationController;
 import com.team16.project.registration.password.PasswordController;
 import com.team16.project.registration.phone.PhoneRegistrationController;
 import com.team16.project.subscribe.SubscribeController;
-import com.team16.project.subscribe.SubscribeSchedule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,8 +42,6 @@ public class Bootstrap {
         // Create model and controller.
         MyAccountService model = new MyAccountService(projectDB);
         new MyAccountController(model);
-        
-        SubscribeSchedule subscribeSchedule = new SubscribeSchedule();
 
         try {
             SellingListService ser = new SellingListService();

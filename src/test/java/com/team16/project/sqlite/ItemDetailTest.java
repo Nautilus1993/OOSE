@@ -38,8 +38,9 @@ public class ItemDetailTest {
     			+ "16 slats of layer-glued birch adjust to your body weight and increase the suppleness of the mattress.");
     	expect.put("avialableDate", "2016-12-31");
     	expect.put("expireDate", "2017-01-31");
+		expect.put("like", "1");
     			
-    	HashMap<String, Object> result = itemDetailDBTest.getItemDetailInfo("1"); 
+    	HashMap<String, Object> result = itemDetailDBTest.getItemDetailInfo("1", "1");
     	System.out.println(result);
     	
         assertNotNull(result); 
@@ -63,8 +64,9 @@ public class ItemDetailTest {
     			+ "16 slats of layer-glued birch adjust to your body weight and increase the suppleness of the mattress.");
     	expect.put("avialableDate", "2016-12-31");
     	expect.put("expireDate", "2017-01-31");
+		expect.put("like", "0");
     			
-    	HashMap<String, Object> result = itemDetailDBTest.getItemDetailInfo("100"); 	
+    	HashMap<String, Object> result = itemDetailDBTest.getItemDetailInfo("100", "1");
     	assertTrue(result.isEmpty()); 
     }
 }
