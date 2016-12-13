@@ -10,3 +10,6 @@ ProjectDB.db
 # Maven
 log/
 target/
+
+# user photo, item photo, etc
+./images/*

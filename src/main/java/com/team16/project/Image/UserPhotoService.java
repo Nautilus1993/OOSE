@@ -15,11 +15,11 @@ public class UserPhotoService {
     private UserPhotoDB userPhotoDB;
     private final Logger logger = LoggerFactory.getLogger(UserPhotoService.class);
 
-    public UserPhotoService() throws SQLException {
+    public UserPhotoService(){
         this.userPhotoDB = new UserPhotoDB();
     }
 
-    public boolean uploadUserPhoto(String name, String image) throws IOException {
+    public boolean uploadUserPhoto(String userId, String image) throws IOException {
         BASE64Decoder decoder = new BASE64Decoder();
         byte[] imageBytes = decoder.decodeBuffer(image);
         logger.debug("Decoded upload data : " + imageBytes.length);
@@ -37,7 +37,7 @@ public class UserPhotoService {
         File f = new File(uploadFile);
         ImageIO.write(imageBuf, "png", f);
 
-        return userPhotoDB.insertUserPhoto(name, uploadFile);
+        return userPhotoDB.insertUserPhoto(userId, uploadFile);
     }
 
     public String downloadUserPhoto(String name){

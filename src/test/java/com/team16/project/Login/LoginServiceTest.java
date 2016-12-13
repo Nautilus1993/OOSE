@@ -7,9 +7,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by DaChen on 12/10/16.
- */
 public class LoginServiceTest {
     LoginDB loginDBTest;
 

@@ -14,8 +14,8 @@ public class MyAccountService {
     private final MyAccountDB projectDB;
     private final Logger logger = LoggerFactory.getLogger(MyAccountService.class);
 
-    public MyAccountService(MyAccountDB projectDB) {
-        this.projectDB = projectDB;
+    public MyAccountService() {
+        this.projectDB = new MyAccountDB();
     }
 
     /**
@@ -37,7 +37,7 @@ public class MyAccountService {
      * @return the updated User detail
      *
      */
-    public HashMap<String, Object> updateAccountInfo(String sessionId, String body) throws myAccountServiceException {
+    public Boolean updateAccountInfo(String sessionId, String body) throws myAccountServiceException {
         User user = new User();
         try {
             user = new Gson().fromJson(body, User.class);
@@ -45,21 +45,12 @@ public class MyAccountService {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        System.out.println("create user success!");
-
     	/* email and phone must not missing! (check in the front end)
     	   if email or phone is updated, we need to send verification. (do here)
     	   how to throw exception?
     	 */
         Boolean isUpdate = projectDB.updateAccountInfo(sessionId, user);
-
-        if (isUpdate) {
-            return null;
-            // return showUserDetailInfo(sessionId);
-        } else {
-            return null;
-        }
+        return isUpdate;
     }
 
     public class myAccountServiceException extends Exception {

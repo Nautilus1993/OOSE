@@ -11,7 +11,7 @@ public class UserPhotoDB {
     private PreparedStatement statement;
     private ResultSet resultSet;
 
-    public UserPhotoDB() throws SQLException{
+    public UserPhotoDB(){
         connection = null;
         statement = null;
         resultSet = null;

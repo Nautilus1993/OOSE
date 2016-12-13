@@ -12,15 +12,15 @@ public class User extends Guest {
     private String address;
     private String city;
     private String state;
-    private String imgLink;
+    private String imgpath;
     private String facebook;
     private String zipCode;
 
-    public String getImgLink() {
-        return imgLink;
+    public String getImgpath() {
+        return imgpath;
     }
-    public void setImgLink(String imgLink) {
-        this.imgLink = imgLink;
+    public void setImgpath(String imgpath) {
+        this.imgpath = imgpath;
     }
     public String getFacebook() {
         return facebook;

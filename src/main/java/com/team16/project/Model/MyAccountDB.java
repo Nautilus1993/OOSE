@@ -10,20 +10,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
-/**
- * This class is used to interact with database.
- * @author OOSE_Team16
- */
 public class MyAccountDB {
+
+    private Connection conn;
+    private Statement sta;
+    private ResultSet results;
+
+    public MyAccountDB(){
+        conn = null;
+        sta = null;
+        results = null;
+    }
+
     /**
      * Method to show user's detail info. in the database.
      * @param userId : userId.
      * @return If the user exists, return a hashMap containing required information, otherwise return an empty hashMap.
      */
     public HashMap<String, Object> searchUserDetailInfo(String userId){
-        Connection conn = null;
-        Statement sta = null;
         HashMap<String, Object> userDetail = new HashMap<String, Object>();
         try {
             Class.forName("org.sqlite.JDBC");
@@ -37,7 +41,7 @@ public class MyAccountDB {
                     + "ON UserDetail.contactId = ContactInfo.contactId "
                     + "WHERE userId = '" + userId + "';";
 
-            ResultSet results = sta.executeQuery(sql);
+            results = sta.executeQuery(sql);
 
             if (!results.isBeforeFirst()) {
                 System.out.println("The user dose not exist!");

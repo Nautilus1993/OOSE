@@ -35,13 +35,8 @@ public class Bootstrap {
         new UserPhotoController();
         new ItemListController();
         new WishController();
-        new UserPhotoController();
         new SubscribeController();
-
-        MyAccountDB projectDB = new MyAccountDB();
-        // Create model and controller.
-        MyAccountService model = new MyAccountService(projectDB);
-        new MyAccountController(model);
+        new MyAccountController();
 
         try {
             SellingListService ser = new SellingListService();
