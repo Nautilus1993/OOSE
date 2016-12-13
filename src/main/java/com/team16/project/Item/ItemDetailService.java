@@ -14,8 +14,8 @@ public class ItemDetailService {
         this.itemDetailDB = new ItemDetailDB();
     }
 
-    public HashMap<String, Object> getItemDetailInfo(String itemId) throws itemDetailServiceException {
-        return itemDetailDB.getItemDetailInfo(itemId);
+    public HashMap<String, Object> getItemDetailInfo(String itemId, String userId) throws itemDetailServiceException {
+        return itemDetailDB.getItemDetailInfo(itemId, userId);
     }
 
     public class itemDetailServiceException extends Exception{

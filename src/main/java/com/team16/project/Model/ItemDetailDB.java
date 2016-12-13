@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 
 public class ItemDetailDB {
-    public HashMap<String, Object> getItemDetailInfo(String itemId){
+    public HashMap<String, Object> getItemDetailInfo(String itemId, String userId){
         Connection conn = null;
         Statement stm = null;
         HashMap<String, Object> itemDetail = new HashMap<String, Object>();
@@ -48,6 +48,32 @@ public class ItemDetailDB {
             results.close();
             stm.close();
             conn.close();
+
+            //search WishList
+            conn = DriverManager.getConnection(Bootstrap.DATABASE);
+            conn.setAutoCommit(false);
+
+            stm = conn.createStatement();
+
+            sql = "SELECT itemId, userId "
+                    + "FROM WishList "
+                    + "WHERE itemId = '" + itemId + "' AND userId = '" + userId + ";";
+
+            results = stm.executeQuery(sql);
+
+            if (!results.isBeforeFirst()) {
+                System.out.println("User " + userId + " does not like item " + itemId + ".");
+                itemDetail.put("like", "0");
+            } else {
+                System.out.println("User " + userId + " likes item " + itemId + ".");
+                itemDetail.put("like", "1");
+            }
+
+            results.close();
+            stm.close();
+            conn.close();
+
+            //return final result
             return itemDetail;
 
         }catch(Exception e){
