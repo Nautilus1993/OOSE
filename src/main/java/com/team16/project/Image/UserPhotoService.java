@@ -8,7 +8,6 @@ import sun.misc.BASE64Encoder;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.sql.SQLException;
 
 public class UserPhotoService {
     public static String userPhotoDir = "./images/userphotos/";
@@ -19,12 +18,18 @@ public class UserPhotoService {
         this.userPhotoDB = new UserPhotoDB();
     }
 
+    /**
+     * For user to upload photo from "Me" page. Store the image as PNG format.
+     * @param userId
+     * @param image
+     * @return
+     * @throws IOException
+     * @throws UserPhotoServiceException
+     */
     public boolean uploadUserPhoto(String userId, String image) throws IOException, UserPhotoServiceException {
         BASE64Decoder decoder = new BASE64Decoder();
         byte[] imageBytes = decoder.decodeBuffer(image);
         logger.debug("Decoded upload data : " + imageBytes.length);
-
-
 
         BufferedImage imageBuf = ImageIO.read(new ByteArrayInputStream(imageBytes));
 
@@ -44,18 +49,31 @@ public class UserPhotoService {
         return userPhotoDB.insertUserPhoto(userId, uploadFile);
     }
 
-    public String downloadUserPhoto(String name) throws UserPhotoServiceException{
-        String filepath = userPhotoDir + name;
+
+    /**
+     * @param userId
+     * @return
+     * @throws UserPhotoServiceException
+     *
+     * Hangbao: Each time user login and visited "Me" page,
+     * App send the latest_modified time for a user_X's photo, server will
+     * compared it with the date of "./images/userphoto/X.png". If they are
+     * same, then server acknowledge client just use its' local photo. Otherwise,
+     * server send the image in string format back to client(Android app).
+     *
+     * The reason for using "latest update time" as response is to save the
+     * bandwidth and reduce the unnecessary network traffic. Here we assume
+     * that user would not frequently change the photo. Thus App can always
+     * get user's photo locally, instead of downloading it from server.
+     */
+    public String downloadUserPhoto(String userId) throws UserPhotoServiceException{
+        String filepath = userPhotoDir + userId;
         String encodedImageStr = "";
 
-        /**
-         * define image file encoder : image file --> string
-         */
+        //define image file encoder : image file --> string
         BASE64Encoder encoder = new BASE64Encoder();
 
-        /**
-         * read an image file from local file system, before reading image should be compressed.
-         */
+         //read an image file from local file system
         File f = new File(filepath);
         try {
             FileInputStream fs = new FileInputStream(f);
@@ -72,6 +90,7 @@ public class UserPhotoService {
         System.out.println("encoded image = " + encodedImageStr);
         return encodedImageStr;
     }
+
 
     public class UserPhotoServiceException extends Exception{
         public UserPhotoServiceException(String message, Throwable cause){

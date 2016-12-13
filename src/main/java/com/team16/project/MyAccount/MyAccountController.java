@@ -55,7 +55,7 @@ public class MyAccountController {
         }, new JsonTransformer());
 
         /**
-         * update an user's profile detail Info
+         * update an user's profile detail Info, include his photo
          */
         post(API_CONTEXT + "/AccountModify/:sessionId", "application/json", (request, response) -> {
             try {
