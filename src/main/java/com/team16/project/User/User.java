@@ -29,9 +29,6 @@ public class User extends Guest {
         this.facebook = facebook;
     }
 
-//    private WishList wishlist;
-//    private SellList sellList;
-
     public String getUsername() {
         return username;
     }
@@ -81,18 +78,6 @@ public class User extends Guest {
     public void setAddress(String address) {
         this.address = address;
     }
-//    public WishList getWishlist() {
-//        return wishlist;
-//    }
-//    public void setWishlist(WishList wishlist) {
-//        this.wishlist = wishlist;
-//    }
-//    public SellList getSellList() {
-//        return sellList;
-//    }
-//    public void setSellList(SellList sellList) {
-//        this.sellList = sellList;
-//    }
 
     /**
      * Method to check if user's name is valid.

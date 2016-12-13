@@ -1,5 +1,9 @@
 package com.team16.project.MyAccount;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.sun.xml.internal.ws.client.BindingProviderProperties;
 import com.team16.project.Image.UserPhotoService;
 import com.team16.project.core.JsonTransformer;
 
@@ -56,13 +60,33 @@ public class MyAccountController {
         post(API_CONTEXT + "/AccountModify/:sessionId", "application/json", (request, response) -> {
             try {
                 String userId = request.params(":sessionId");
-                System.out.println("received request = " + request.body());
-                return myAccountService.updateAccountInfo(request.params(":sessionId"), request.body());
+                /**
+                 * Hangbao: Get image string from request body
+                 */
+                JsonParser parser = new JsonParser();
+                JsonElement element = parser.parse(request.body());
+                JsonObject json = element.getAsJsonObject();
+                String image = json.get("image").getAsString();
+
+                /**
+                 * Hangbao: flag1 & flag2 check if user profile has been updated.
+                 */
+                Boolean flag1 = userPhotoService.uploadUserPhoto(userId, image);
+                Boolean flag2 = myAccountService.updateAccountInfo(request.params(":sessionId"), request.body());
+                if(flag1 && flag2){
+                    logger.info("Successfully Updated No."+ userId + " user's profile ");
+                    return true;
+                }
             } catch (MyAccountService.myAccountServiceException ex) {
                 logger.error(String.format("Failed to update accountInfo with sessionId: %s", request.params(":sessionId")));
                 response.status(405);
-                return Collections.EMPTY_MAP;
+
+            } catch (UserPhotoService.UserPhotoServiceException ex){
+                logger.error("User Photo Service Exception: upload user photo failed.");
+                response.status(405);
             }
+
+            return Collections.EMPTY_MAP;
         }, new JsonTransformer());
     }
 }

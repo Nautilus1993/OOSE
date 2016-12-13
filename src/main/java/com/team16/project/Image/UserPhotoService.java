@@ -19,7 +19,7 @@ public class UserPhotoService {
         this.userPhotoDB = new UserPhotoDB();
     }
 
-    public boolean uploadUserPhoto(String userId, String image) throws IOException {
+    public boolean uploadUserPhoto(String userId, String image) throws IOException, UserPhotoServiceException {
         BASE64Decoder decoder = new BASE64Decoder();
         byte[] imageBytes = decoder.decodeBuffer(image);
         logger.debug("Decoded upload data : " + imageBytes.length);
@@ -32,15 +32,19 @@ public class UserPhotoService {
             logger.debug("Buffered image is null");
         }
 
-        String uploadFile = userPhotoDir + "user.png";
-        logger.debug("Image file path = " + uploadFile);
+        String uploadFile = userPhotoDir + userId +".png";
+        System.out.println("Image file path = " + uploadFile);
         File f = new File(uploadFile);
-        ImageIO.write(imageBuf, "png", f);
-
+        if(f.exists()){
+            ImageIO.write(imageBuf, "png", f);
+        }else {
+            f.createNewFile();
+            ImageIO.write(imageBuf, "png", f);
+        }
         return userPhotoDB.insertUserPhoto(userId, uploadFile);
     }
 
-    public String downloadUserPhoto(String name){
+    public String downloadUserPhoto(String name) throws UserPhotoServiceException{
         String filepath = userPhotoDir + name;
         String encodedImageStr = "";
 
@@ -67,5 +71,11 @@ public class UserPhotoService {
         }
         System.out.println("encoded image = " + encodedImageStr);
         return encodedImageStr;
+    }
+
+    public class UserPhotoServiceException extends Exception{
+        public UserPhotoServiceException(String message, Throwable cause){
+            super(message, cause);
+        }
     }
 }
