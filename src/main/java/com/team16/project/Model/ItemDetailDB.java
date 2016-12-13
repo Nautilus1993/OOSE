@@ -57,7 +57,7 @@ public class ItemDetailDB {
 
             sql = "SELECT itemId, userId "
                     + "FROM WishList "
-                    + "WHERE itemId = '" + itemId + "' AND userId = '" + userId + ";";
+                    + "WHERE itemId = '" + itemId + "' AND userId = '" + userId + "';";
 
             results = stm.executeQuery(sql);
 
