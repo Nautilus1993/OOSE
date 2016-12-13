@@ -18,6 +18,14 @@ public class ItemDetailService {
         return itemDetailDB.getItemDetailInfo(itemId, userId);
     }
 
+    public void addLikeToWishList(String itemId, String userId) throws itemDetailServiceException {
+        itemDetailDB.addLikeToWishList(itemId, userId);
+    }
+
+    public void deleteLikeFromWishList(String itemId, String userId) throws itemDetailServiceException {
+        itemDetailDB.deleteLikeFromWishList(itemId, userId);
+    }
+
     public class itemDetailServiceException extends Exception{
         public itemDetailServiceException(String message, Throwable cause){
             super(message, cause);

@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 
 public class ItemDetailDB {
+
     public HashMap<String, Object> getItemDetailInfo(String itemId, String userId){
         Connection conn = null;
         Statement stm = null;
@@ -57,7 +58,7 @@ public class ItemDetailDB {
 
             sql = "SELECT itemId, userId "
                     + "FROM WishList "
-                    + "WHERE itemId = '" + itemId + "' AND userId = '" + userId + ";";
+                    + "WHERE itemId = '" + itemId + "' AND userId = '" + userId + "';";
 
             results = stm.executeQuery(sql);
 
@@ -82,5 +83,59 @@ public class ItemDetailDB {
             System.exit(0);
         }
         return itemDetail;
+    }
+
+    public void addLikeToWishList(String itemId, String userId) {
+        Connection conn = null;
+        Statement stm = null;
+        try{
+            Class.forName("org.sqlite.JDBC");
+            conn = DriverManager.getConnection(Bootstrap.DATABASE);
+            conn.setAutoCommit(false);
+            System.out.println("Connect database successfully");
+            stm = conn.createStatement();
+
+            String sql = "INSERT INTO WishList (userId, itemId) "
+                    + "VALUES (" + userId + ", " + itemId + ");";
+
+            System.out.println(sql);
+
+            stm.executeUpdate(sql);
+
+            stm.close();
+            conn.commit();
+            conn.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ":" + e.getMessage());
+            System.exit(0);
+        }
+    }
+
+    public void deleteLikeFromWishList(String itemId, String userId) {
+        Connection conn = null;
+        Statement stm = null;
+        try{
+            Class.forName("org.sqlite.JDBC");
+            conn = DriverManager.getConnection(Bootstrap.DATABASE);
+            conn.setAutoCommit(false);
+            System.out.println("Connect database successfully");
+            stm = conn.createStatement();
+
+            String sql = "DELETE FROM WishList "
+                    + "WHERE itemId = " + itemId + " AND userId = " + userId + ";";
+
+            stm.executeUpdate(sql);
+
+            stm.close();
+            conn.commit();
+            conn.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+            System.err.println(e.getClass().getName() + ":" + e.getMessage());
+            System.exit(0);
+        }
     }
 }

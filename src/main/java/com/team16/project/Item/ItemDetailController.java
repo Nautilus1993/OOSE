@@ -35,7 +35,32 @@ public class ItemDetailController {
             }
         }, new JsonTransformer());
 
+        post(ITEM_DETAIL_API + "/like/:userId/:itemId", "application/json", (request, response) -> {
+            String userId = request.params(":userId");
+            String itemId = request.params(":itemId");
+            try{
+                itemDetailService.addLikeToWishList(itemId, userId);
+                System.out.println("WishList Updates Successfully!");
+                return Collections.EMPTY_MAP;
+            }catch(ItemDetailService.itemDetailServiceException ex) {
+                logger.error(String.format("Incorrect itemId: %s", itemId));
+                response.status(404);
+                return Collections.EMPTY_MAP;
+            }
+        }, new JsonTransformer());
+
+        post(ITEM_DETAIL_API + "/dislike/:userId/:itemId", "application/json", (request, response) -> {
+            String userId = request.params(":userId");
+            String itemId = request.params(":itemId");
+            try{
+                itemDetailService.deleteLikeFromWishList(itemId, userId);
+                System.out.println("WishList Updates Successfully!");
+                return Collections.EMPTY_MAP;
+            }catch(ItemDetailService.itemDetailServiceException ex) {
+                logger.error(String.format("Incorrect itemId: %s", itemId));
+                response.status(404);
+                return Collections.EMPTY_MAP;
+            }
+        }, new JsonTransformer());
     }
-
-
 }
