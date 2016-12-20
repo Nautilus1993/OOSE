@@ -8,6 +8,7 @@ import sun.misc.BASE64Encoder;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.text.SimpleDateFormat;
 
 public class UserPhotoService {
     public static String userPhotoDir = "./images/userphotos/";
@@ -66,15 +67,26 @@ public class UserPhotoService {
      * that user would not frequently change the photo. Thus App can always
      * get user's photo locally, instead of downloading it from server.
      */
-    public String downloadUserPhoto(String userId) throws UserPhotoServiceException{
-        String filepath = userPhotoDir + userId;
+    public String downloadUserPhoto(String userId, String time) throws UserPhotoServiceException{
+        String filepath = userPhotoDir + userId + ".png";
         String encodedImageStr = "";
+
+        /**
+         * Get photo file last modified time
+         * If not equal to time from frontend ,return null
+         */
+        File f = new File(filepath);
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        String modifiedTime = format.format(f.lastModified());
+        if (time == modifiedTime){
+            System.out.println("File modified time is same, user old file.");
+            return null;
+        }
 
         //define image file encoder : image file --> string
         BASE64Encoder encoder = new BASE64Encoder();
 
          //read an image file from local file system
-        File f = new File(filepath);
         try {
             FileInputStream fs = new FileInputStream(f);
             byte imageBytes[] = new byte[(int) f.length()];

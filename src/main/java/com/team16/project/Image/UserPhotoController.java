@@ -7,7 +7,9 @@ import com.team16.project.core.JsonTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 
 import static spark.Spark.*;
@@ -23,6 +25,9 @@ public class UserPhotoController {
     }
 
     private void setupEndpoints(){
+        /**
+         * For user upload photo
+         */
         post(USER_IMAGE_API + "/upload", "application/json", (req, res)->{
             try{
                 String imageReceived = req.body();
@@ -45,15 +50,25 @@ public class UserPhotoController {
             }
         }, new JsonTransformer());
 
-        get(USER_IMAGE_API + "/download/:imagename", (req, res) -> {
+
+        /**
+         * For user to download photo from server
+         * (This function is useful for user to clear Android cache)
+         *
+         * But it should first check the "last modified time" from Client
+         * 1) If time is same with local photo, return null;
+         * 2) If not same, send StringPhoto back to Android.
+         */
+        get(USER_IMAGE_API + "/download/:userId/:time", (req, res) -> {
             try{
-                String imageName = req.params(":imagename");
-                System.out.println("request image name: " + imageName);
-                return this.userPhotoService.downloadUserPhoto(imageName);
+                String userId = req.params("userId");
+                String time = req.params("time");
+                System.out.println("time = " + time + "  UserID = " + userId);
+                return this.userPhotoService.downloadUserPhoto(userId, time);
             }catch(Exception e){
                 e.printStackTrace();
-                return  Collections.EMPTY_MAP;
             }
+            return  Collections.EMPTY_MAP;
         });
 
     }
