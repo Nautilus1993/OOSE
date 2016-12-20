@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.team16.project.Item.Item;
+import com.team16.project.subscribe.SubscribeService;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -134,6 +135,7 @@ public class SellingListService {
 
             Integer stat = stmt.executeUpdate();
             System.out.println(stat);//check update status
+            new SubscribeService().listUser(item.getCategory1(), item.getCategory2());
         }catch(SQLException e) {
             logger.error("SellingListService.addPost: Failed to create new entry", e);
             throw new SellingListServiceException("SellingListService.addPost: Failed to create new entry", e);
