@@ -52,14 +52,17 @@ public class SubscribeService {
         }
     }
 
-    public int listUser() throws SQLException {
+    public int listUser(String cat1, String cat2) throws SQLException {
         String query = "SELECT email, category1, category2 " +
                 "FROM UserDetail, ContactInfo, Subscribe " +
-                "WHERE UserDetail.userId = Subscribe.userId AND UserDetail.contactId = ContactInfo.contactId";
+                "WHERE UserDetail.userId = Subscribe.userId AND UserDetail.contactId = ContactInfo.contactId " +
+                "AND Subscribe.category1 = ? AND Subscribe.category2 = ?";
 
         try {
             connection =  DriverManager.getConnection(Bootstrap.DATABASE);
             statement = connection.prepareStatement(query);
+            statement.setString(1, cat1);
+            statement.setString(2, cat2);
             resultSet = statement.executeQuery();
             List<String> emails = new ArrayList<String>();
             List<String> cat1s = new ArrayList<String>();
@@ -71,7 +74,9 @@ public class SubscribeService {
             }
 
             for (int i = 0; i < emails.size(); i++) {
-                SubscribeSender subscribeSender = new SubscribeSender(emails.get(i), "JHUFurniture Subscribe", "Checkout your scribe: ", cat1s.get(i) + "-" + cat2s.get(i));
+                SubscribeSender subscribeSender = new SubscribeSender(emails.get(i),
+                        "JHUFurniture Subscribe", "A new item in your subscribed category is posted - ",
+                        "top category: " + cat1s.get(i) + " - sub category: " + cat2s.get(i));
             }
             postQuery();
 

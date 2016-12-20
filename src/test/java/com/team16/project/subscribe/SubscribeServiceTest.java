@@ -26,7 +26,7 @@ public class SubscribeServiceTest {
 
     @Test
     public void listUser() throws Exception {
-        int result = subscribeService.listUser();
+        int result = subscribeService.listUser("bedroom", "bed");
         assertEquals(1, result);
     }
 
