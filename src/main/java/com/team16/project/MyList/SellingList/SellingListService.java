@@ -24,7 +24,6 @@ public class SellingListService {
 
     public ArrayList<Item> getSellingList(Request request) throws SellingListServiceException{
         //get the userId from request
-        System.out.println("****request body = " + request.body());
         Integer userId = Integer.valueOf(request.params(":sessionId"));
 
         //connect to db, create sql, query the result
@@ -55,20 +54,13 @@ public class SellingListService {
                 currItem.setCondition(rs.getString("condition"));
                 currItem.setDeliver(rs.getBoolean("isDeliver"));
                 if(rs.getString("avialableDate") != null){
-                    System.out.println("****date="+ rs.getDate("avialableDate"));
                     currItem.setAvialableDate(rs.getDate("avialableDate"));
                 }
                 if(rs.getString("expireDate") != null){
                     currItem.setExpireDate(rs.getDate("expireDate"));
                 }
                 sellList.add(currItem);
-
-//                System.out.println("itemId: " + rs.getInt("itemId"));
-//                System.out.println("availableDate: " + rs.getString("avialableDate"));
-//                System.out.println("pickupAddress: " + rs.getString("pickUpAddress"));
             }
-
-
             //return 0;
         }
         catch (Exception e) {
@@ -80,8 +72,8 @@ public class SellingListService {
                 stmt.close();
                 c.close();
             }catch(SQLException e){
-                logger.error("SellingListService.addPost: Failed to create new entry", e);
-                throw new SellingListServiceException("SellingListService.addPost: Failed to create new entry", e);
+                logger.error("SellingListService.getSellingList: Failed to load entry", e);
+                throw new SellingListServiceException("SellingListService.addPost: Failed to load entry", e);
             }
         }
 
@@ -110,7 +102,7 @@ public class SellingListService {
 
             c = DriverManager.getConnection("jdbc:sqlite:ProjectDB.db");
             stmt = c.prepareStatement(sql);
-            stmt.setInt(1, item.getSellerId());//how to bind an object to a sql here?
+            stmt.setInt(1, item.getSellerId());
             stmt.setString(2, item.getName());
             stmt.setString(3, item.getDesciption());
             stmt.setString(4, item.getImgLink());
@@ -127,6 +119,7 @@ public class SellingListService {
             stmt.setDouble(8, item.getPrice());
             stmt.setString(9, item.getCategory1());
             stmt.setString(10, item.getCategory2());
+            System.out.println("deliver" + item.isDeliver());
             stmt.setBoolean(11, item.isDeliver());
             stmt.setString(12, item.getCondition());
             stmt.setString(13, item.getPickUpAddress());
@@ -156,8 +149,7 @@ public class SellingListService {
     }
 
     public Item editPost(Request request, Response response) throws  SellingListServiceException{
-        //get item id from request
-        String itemId = request.params(":itemId");
+        System.out.println("***********edit request received!");
 
         //get item info from db
         Connection c = null;
@@ -167,16 +159,44 @@ public class SellingListService {
         ResultSet rs = null;
 
         try {
+            //get item id from request
+            Integer itemId = Integer.valueOf(request.params(":itemId"));
             c = DriverManager.getConnection("jdbc:sqlite:ProjectDB.db");
             stmt = c.prepareStatement(sql);
-            stmt.setString(1, itemId);
+            stmt.setInt(1, itemId);
             rs = stmt.executeQuery();
-            resultItem = (Item)rs;//how to transform result
-            System.out.println(rs);//check result
+
+            // load data to result set
+            while(rs.next()){
+                resultItem = new Item();
+                resultItem.setItemId(rs.getInt("itemId"));
+                resultItem.setSellerId(rs.getInt("sellerId"));
+                resultItem.setName(rs.getString("name"));
+                resultItem.setPrice(rs.getDouble("price"));
+                resultItem.setCategory1(rs.getString("category1"));
+                resultItem.setCategory2(rs.getString("category2"));
+                resultItem.setImgLink(rs.getString("imgPath"));
+                resultItem.setCondition(rs.getString("condition"));
+                resultItem.setDeliver(rs.getBoolean("isDeliver"));
+                resultItem.setDescription(rs.getString("description"));
+                if(rs.getString("avialableDate") != null){
+                    resultItem.setAvialableDate(rs.getDate("avialableDate"));
+                }
+                if(rs.getString("expireDate") != null){
+                    resultItem.setExpireDate(rs.getDate("expireDate"));
+                }
+                resultItem.setNumOfLikes(rs.getInt("numOfLikes"));
+                ArrayList<String> contacts = new Gson().fromJson(rs.getString("contactOptions"), ArrayList.class);
+                resultItem.setContactMethods(contacts);
+            }
+
         } catch(SQLException e) {
+            e.printStackTrace();
             logger.error("SellingListService.editPost: Failed to fetch data", e);
             throw new SellingListServiceException("SellingListService.editPost: Failed to fetch data", e);
-        }finally{
+        } catch(Exception e){
+            e.printStackTrace();
+        } finally{
             try{
                 rs.close();
                 stmt.close();
@@ -186,7 +206,7 @@ public class SellingListService {
                 throw new SellingListServiceException("SellingListService.editPost: Failed to fetch data", e);
             }
         }
-        //return item
+        //return item object
         return resultItem;
     }
 
@@ -221,13 +241,50 @@ public class SellingListService {
                 stmt.close();
                 c.close();
             }catch(SQLException e){
-                logger.error("SellingListService.editPost: Failed to fetch data", e);
+                logger.error("SellingListService.updatePost: Failed to fetch data", e);
                 throw new SellingListServiceException("SellingListService.editPost: Failed to fetch data", e);
             }
         }
     }
 
 
+    public void removePost(Request request, Response response) throws SellingListServiceException{
+        System.out.println("remove request received!");
+        Connection c = null;
+        PreparedStatement stmt = null;
+
+        try{
+            //get itemId from request info
+            int itemId = Integer.valueOf(request.params(":itemId"));
+            System.out.println("itemId="+itemId);
+
+            //connect to db, create sql, execute query
+            String sql = "DELETE FROM Item WHERE itemId = ?";
+
+            c = DriverManager.getConnection("jdbc:sqlite:ProjectDB.db");
+            stmt = c.prepareStatement(sql);
+            stmt.setInt(1, itemId);
+
+            Integer stat = stmt.executeUpdate();
+            System.out.println(stat);//check update status
+        }catch(SQLException e) {
+            logger.error("SellingListService.removePost: Failed to remove entry", e);
+            throw new SellingListServiceException("SellingListService.removePost: Failed to remove entry", e);
+        }catch(JsonSyntaxException e){
+            logger.error("SellingListService.removePost: Failed to parse json", e);
+            throw new SellingListServiceException("SellingListService.removePost: Failed to remove entry", e);
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                stmt.close();
+                c.close();
+            }catch (SQLException e){
+                logger.error("SellingListService.removePost: Failed to remove entry", e);
+                throw new SellingListServiceException("SellingListService.removePost: Failed to remove entry", e);
+            }
+        }
+    }
 
     //-----------------------------------------------------------------------------//
     // Helper Classes and Methods

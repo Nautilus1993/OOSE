@@ -108,7 +108,7 @@ public class SellingListController {
         }, new JsonTransformer());
 
         //Edit an posted item
-        post(API_CONTEXT + "/edit/:itemId", "application/json", (request, response) -> {
+        get(API_CONTEXT + "/edit/:itemId", "application/json", (request, response) -> {
             try{
                 Item item = service.editPost(request, response);
                 response.status(200);
@@ -124,6 +124,18 @@ public class SellingListController {
         post(API_CONTEXT + "/update/:itemId", "application/json", (request, response) -> {
             try{
                 service.updatePost(request, response);
+                response.status(200);
+            }catch(SellingListService.SellingListServiceException e){
+                logger.error("failed to get item info");
+                response.status(500);
+            }
+            return Collections.EMPTY_MAP;
+        }, new JsonTransformer());
+
+        //remove an posted item
+        get(API_CONTEXT + "/remove/:itemId", "application/json", (request, response) -> {
+            try{
+                service.removePost(request, response);
                 response.status(200);
             }catch(SellingListService.SellingListServiceException e){
                 logger.error("failed to get item info");
