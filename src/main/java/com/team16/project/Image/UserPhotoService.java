@@ -11,11 +11,11 @@ import java.io.*;
 
 public class UserPhotoService {
     public static String userPhotoDir = "./images/userphotos/";
-    private UserPhotoService userPhotoDB;
+    private UserPhotoDB userPhotoDB;
     private final Logger logger = LoggerFactory.getLogger(UserPhotoService.class);
 
     public UserPhotoService(){
-        this.userPhotoDB = new UserPhotoService();
+        this.userPhotoDB = new UserPhotoDB();
     }
 
     /**
