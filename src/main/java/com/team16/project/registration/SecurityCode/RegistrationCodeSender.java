@@ -5,7 +5,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 import java.util.Random;
-
+/**
+ * This class is responsible for sending emails that contain registration code to users.
+ * @author OOSE_Team16
+ */
 public class RegistrationCodeSender {
     private static final String HOST = "smtp.gmail.com";
     private static final String PORT = "587";
