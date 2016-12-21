@@ -4,7 +4,10 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
-
+/**
+ * This class is responsible for sending emails to users when new items in their subscribed categories are posted.
+ * @author OOSE_Team16
+ */
 public class SubscribeSender {
     private static final String HOST = "smtp.gmail.com";
     private static final String PORT = "587";
