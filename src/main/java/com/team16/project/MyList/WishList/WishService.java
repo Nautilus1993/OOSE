@@ -8,7 +8,10 @@ import org.json.simple.parser.ParseException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * This class handles displaying/deleting wish.
+ * @author OOSE_Team16
+ */
 public class WishService {
     private Connection connection;
     private PreparedStatement statement;
@@ -22,6 +25,7 @@ public class WishService {
         parser = new JSONParser();
     }
 
+    // This method remove a wish.
     public int removeWish(String body) throws ParseException {
         JSONObject jsonObject = (JSONObject) parser.parse(body);
         String userId = (String) jsonObject.get("userId");
@@ -44,6 +48,7 @@ public class WishService {
         }
     }
 
+    // This method displays every item on a user's wishlist
     public List<Wish> listWishes(String body)  {
         String query = "SELECT * " + "FROM WishList NATURAL JOIN Item NATURAL JOIN UserDetail " + "WHERE WishList.userId = ?";
         JSONObject jsonObject = null;
