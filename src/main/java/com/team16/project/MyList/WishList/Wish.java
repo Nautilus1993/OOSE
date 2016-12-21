@@ -1,5 +1,8 @@
 package com.team16.project.MyList.WishList;
-
+/**
+ * This class is the data model for wishlist
+ * @author OOSE_Team16
+ */
 public class Wish {
     private String name;
     private String url;
