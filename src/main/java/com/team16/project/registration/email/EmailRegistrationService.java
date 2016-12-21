@@ -6,7 +6,10 @@ import org.json.simple.parser.ParseException;
 
 import javax.mail.MessagingException;
 import java.sql.*;
-
+/**
+ * This class is for checking existing email.
+ * @author OOSE_Team16
+ */
 public class EmailRegistrationService {
     private EmailRegistrationDB emailRegistrationDB;
 
@@ -15,6 +18,7 @@ public class EmailRegistrationService {
     }
 
 
+    // This method checks if the input email address is already in database.
     int verifyEmail(String body) throws ParseException, SQLException, MessagingException {
         return emailRegistrationDB.searchUser(body);
     }
