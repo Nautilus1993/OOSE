@@ -9,7 +9,10 @@ import javax.mail.MessagingException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * This class hanlds the subscription service
+ * @author OOSE_Team16
+ */
 public class SubscribeService {
     private Connection connection;
     private PreparedStatement statement;
@@ -23,6 +26,7 @@ public class SubscribeService {
         resultSet = null;
     }
 
+    // This method writes to the database when a user subscribes to a category.
     public int subscribe(String body) throws ParseException, SQLException {
         String query = "SELECT category1, category2 " + "FROM item " + "WHERE itemId = ?";
         String insert = "INSERT INTO Subscribe (userId, category1, category2) VALUES (?, ?, ?)";
@@ -52,6 +56,7 @@ public class SubscribeService {
         }
     }
 
+    // This method finds the users that have subscribed the input categories.
     public int listUser(String cat1, String cat2) throws SQLException {
         String query = "SELECT email, category1, category2 " +
                 "FROM UserDetail, ContactInfo, Subscribe " +
