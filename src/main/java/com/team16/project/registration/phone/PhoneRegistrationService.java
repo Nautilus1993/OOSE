@@ -6,7 +6,10 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import javax.mail.MessagingException;
-
+/**
+ * This class is responsible for sending text messages containing registration code to users.
+ * @author OOSE_Team16
+ */
 class PhoneRegistrationService {
     private static final String TO_BE_VERIFIED = "toBeVerified";
     private static final String ATT_TRANSIT = "@txt.att.net";
@@ -19,6 +22,7 @@ class PhoneRegistrationService {
         parser = new JSONParser();
     }
 
+    // This method sends text message to user's phone number
     int verfyPhone(String body) throws ParseException, MessagingException {
         JSONObject jsonObject = (JSONObject) parser.parse(body);
         String phoneToBeVerified =  (String) jsonObject.get(TO_BE_VERIFIED);
