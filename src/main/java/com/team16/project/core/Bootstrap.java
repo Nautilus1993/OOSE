@@ -1,6 +1,7 @@
 package com.team16.project.core;
 
 
+import com.team16.project.Image.ItemPhotoController;
 import com.team16.project.Image.UserPhotoController;
 import com.team16.project.Item.ItemDetailController;
 import com.team16.project.ItemList.ItemListController;
@@ -26,6 +27,7 @@ public class Bootstrap {
     public static final String DATABASE = "jdbc:sqlite:ProjectDB.db";
     private static final Logger LOGGER = LoggerFactory.getLogger(Bootstrap.class);
 
+
     public static void main(String[] args) throws SQLException {
         new EmailRegistrationController();
         new PhoneRegistrationController();
@@ -33,10 +35,12 @@ public class Bootstrap {
         new LoginController();
         new ItemDetailController();
         new UserPhotoController();
+        new ItemPhotoController();
         new ItemListController();
         new WishController();
         new SubscribeController();
         new MyAccountController();
+
 
         try {
             SellingListService ser = new SellingListService();

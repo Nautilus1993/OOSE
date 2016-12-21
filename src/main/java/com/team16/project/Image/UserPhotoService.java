@@ -68,6 +68,7 @@ public class UserPhotoService {
      * get user's photo locally, instead of downloading it from server.
      */
     public String downloadUserPhoto(String userId, String time) throws UserPhotoServiceException{
+        // here can also get photo file path from database.
         String filepath = userPhotoDir + userId + ".png";
         String encodedImageStr = "";
 
@@ -76,7 +77,7 @@ public class UserPhotoService {
          * If not equal to time from frontend ,return null
          */
         File f = new File(filepath);
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy-HH-mm");
         String modifiedTime = format.format(f.lastModified());
         if (time == modifiedTime){
             System.out.println("File modified time is same, user old file.");
@@ -99,7 +100,6 @@ public class UserPhotoService {
             // for fs.read(imageBytes)
             e.printStackTrace();
         }
-        System.out.println("encoded image = " + encodedImageStr);
         return encodedImageStr;
     }
 

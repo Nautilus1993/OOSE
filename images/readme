@@ -1,0 +1,6 @@
+This folder is used for store user and item photos.
+
+All user photo will be stored under ./images/userphotos
+All item photo will be stored under ./images/itemphotos
+
+user photo will be named with userId.

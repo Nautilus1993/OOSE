@@ -23,7 +23,6 @@ public class UserPhotoDB {
     }
 
     public boolean insertUserPhoto(String userId, String filePath){
-        Connection conn = null;
         int uid = Integer.parseInt(userId);
 
         try{
