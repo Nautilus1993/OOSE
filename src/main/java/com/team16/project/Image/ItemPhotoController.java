@@ -21,10 +21,11 @@ public class ItemPhotoController {
     }
 
     private void setupEndpoints(){
-        /* --------  1 : For Seller upload item photo  -------  */
-        post(ITEM_IMAGE_API + "/upload/:sessionId", "application/json", (req, res) -> {
+        /* --------  1 : For Seller post an item photo  -------  */
+        post(ITEM_IMAGE_API + "/upload/:userId", "application/json", (req, res) -> {
             try{
                 String imageReceived = req.body();
+                String userId = req.params("userId");
 
                 // Transfer a string to a json
                 JsonParser parser = new JsonParser();
@@ -33,9 +34,8 @@ public class ItemPhotoController {
 
                 // get info from json object
                 String itemImage = json.get("image").getAsString();
+                //itemPhotoService.uploadItemPhoto(userId, itemImage);
 
-
-                System.out.println("Item Image Length = " + itemImage.length());
             }catch (Exception e){
                 e.printStackTrace();
             }
@@ -44,6 +44,17 @@ public class ItemPhotoController {
 
         // Todo:
         /* --------  2 : ItemDetail display item image  -------  */
+        get(ITEM_IMAGE_API + "/display/:itemId", "application/json", (req, res) -> {
+
+            try{
+                String itemId = req.params("itemId");
+                String itemImage = itemPhotoService.getItemPhoto(itemId);
+                return itemImage;
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return Collections.EMPTY_MAP;
+        });
 
         /* --------  3 : ItemList display list of images  -------  */
     }

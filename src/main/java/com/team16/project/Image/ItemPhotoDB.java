@@ -4,8 +4,6 @@ import com.team16.project.core.Bootstrap;
 
 import java.sql.*;
 
-import static com.team16.project.Image.ItemPhotoService.itemNumber;
-
 public class ItemPhotoDB {
     private Connection connection;
     private PreparedStatement statement;
@@ -17,25 +15,25 @@ public class ItemPhotoDB {
         resultSet = null;
     }
 
-    public int getCurrentItemNumber(){
-        int itemNumber = 0;
+    public String generateItemPhotoName(){
+        String photoName = "";
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(Bootstrap.DATABASE);
             connection.setAutoCommit(false);
 
-            String sql = "select count(itemId) from Item";
+            String sql = "SELECT MAX(itemId) FROM Item";
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
 
-            itemNumber = resultSet.getInt("count(itemId)");
+            Integer itemNumber = resultSet.getInt("MAX(itemId)") + 1;
+            photoName = itemNumber.toString();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return itemNumber;
+        return photoName;
     }
-
 
     /**
      * This function is used when user post an item
@@ -49,16 +47,41 @@ public class ItemPhotoDB {
             connection = DriverManager.getConnection(Bootstrap.DATABASE);
             connection.setAutoCommit(false);
 
-            String sql = "UPDATE Item SET imgPath = ? WHERE itemId = ?";
+            // get itemId (new item id should be the largest in database)
+            String sql = "SELECT MAX(itemId) FROM Item";
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+
+            String itemId = resultSet.getString("MAX(itemId)");
+
+            sql = "UPDATE Item SET imgPath = ? WHERE itemId = ?";
             statement = connection.prepareStatement(sql);
             statement.setString(1, filePath);
-            statement.setInt(2, itemNumber);
+            statement.setString(2, itemId);
             statement.executeUpdate();
-            System.out.println("Post an item: image stored in " + filePath );
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public String getItemFilePath(String itemId){
+        String filePath = "";
+        try {
+            Class.forName("org.sqlite.JDBC");
+            connection = DriverManager.getConnection(Bootstrap.DATABASE);
+            connection.setAutoCommit(false);
+
+            // get itemId (new item id should be the largest in database)
+            String sql = "SELECT imgPath FROM Item WHERE itemId = ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, itemId);
+            resultSet = statement.executeQuery();
+            filePath = resultSet.getString("imgPath");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return filePath;
     }
 }
