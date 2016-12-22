@@ -49,6 +49,7 @@ public class MyAccountService {
     	   if email or phone is updated, we need to send verification. (do here)
     	   how to throw exception?
     	 */
+    	System.out.println("sessionId: " + sessionId);
         Boolean isUpdate = projectDB.updateAccountInfo(sessionId, user);
         return isUpdate;
     }
