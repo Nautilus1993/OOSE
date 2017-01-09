@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_email_verification"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#e1e1e1"
+    tools:context="com.team16.oose_project.registration.email.EmailRegistration">
+
+    <LinearLayout
+        android:id="@+id/evlStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="100dp"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/evStep"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#6e6e6e"
+            android:textSize="12sp"
+            android:text="Step 1/3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/evlEmail"
+        android:layout_below="@+id/evlStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/evEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#6e6e6e"
+            android:textSize="20sp"
+            android:text="JHU Email" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/evlEmalInput"
+        android:layout_below="@+id/evlEmail"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:paddingTop="10dp"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:id="@+id/evEmailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/verification_edittext"
+            android:textAlignment="center"
+            android:maxLength="20"
+            android:text="" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/evlButton"
+        android:layout_below="@+id/evlEmalInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="40dp"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/evButton"
+            android:text="Send Code"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:background="@drawable/verification_button"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:onClick="verifyEmail"
+            />
+    </LinearLayout>
+</RelativeLayout>

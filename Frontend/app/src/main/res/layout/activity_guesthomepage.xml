@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#BBDEFB"
+    tools:context="com.team16.oose_project.core.GuestHomePage">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_weight="0"
+        android:background="#03A9F4"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <!--
+                    <ImageButton
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent"
+                        app:srcCompat="@drawable/bedroom"
+                        android:id="@+id/bedroomButton"
+                        android:scaleType="fitXY"/>
+        -->
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/bedroom"
+            android:text="Bedroom"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/bedroomButton"
+            android:scaleType="fitXY"
+            android:onClick="fromHomepageToSubBedroom"/>
+
+        <!--            <ImageButton
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent"
+                        app:srcCompat="@drawable/studyroom"
+                        android:id="@+id/studyRoomButton"
+                        android:scaleType="fitXY" />
+        -->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/studyroom"
+            android:text="study room"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/studyRoomButton"
+            android:scaleType="fitXY"
+            android:onClick="fromHomepageToSubStudyRoom"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!--        <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/kitchen"
+                    android:id="@+id/kitchenButton"
+                    android:scaleType="fitXY" />
+        -->
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/kitchen"
+            android:text="kitchen"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/kitchenButton"
+            android:scaleType="fitXY"
+            android:onClick="fromHomepageToSubKitchen"/>
+
+        <!--        <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/bathroom"
+                    android:id="@+id/bathroomButton"
+                    android:scaleType="fitXY" />
+        -->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/bathroom"
+            android:text="bathroom"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/bathroomButton"
+            android:scaleType="fitXY"
+            android:onClick="fromHomepageToSubBathroom"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!--        <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/livingroom"
+                    android:id="@+id/livingroomButton"
+                    android:scaleType="fitXY" />
+        -->
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/livingroom"
+            android:text="living room"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/livingroomButton"
+            android:scaleType="fitXY"
+            android:onClick="fromHomepageToSubLivingRoom"/>
+
+        <!--        <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/balcony"
+                    android:id="@+id/balconyButton"
+                    android:scaleType="fitXY" />
+        -->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/balcony"
+            android:text="balcony"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/balconyButton"
+            android:scaleType="fitXY"
+            android:onClick="fromHomepageToSubBalcony"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!--        <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/children"
+                    android:id="@+id/childroomButton"
+                    android:scaleType="fitXY" />
+        -->
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/children"
+            android:text="childern"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/childroomButton"
+            android:scaleType="fitXY"
+            android:onClick="fromHomepageToSubChildren"/>
+
+        <!--        <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/more"
+                    android:id="@+id/moreButton"
+                    android:scaleType="fitXY" />
+        -->
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:background="@drawable/more"
+            android:text="more"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:id="@+id/moreButton"
+            android:scaleType="fitXY"
+            android:onClick="Image"/>
+    </LinearLayout>
+
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="0"
+        app:bb_tabXmlResource="@xml/bottombar_tabs" />
+
+</LinearLayout>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:id="@+id/myProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/evStep"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="My profile" />
+            </LinearLayout>
+
+
+            <TableLayout
+                android:id="@+id/activity_update_profile_list"
+                android:layout_below="@+id/myProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="right"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:stretchColumns="2">
+
+                <ImageView
+                    android:id="@+id/userimage"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp" />
+
+                <TableRow>
+                    <TextView
+                        android:text="Username: "
+                        android:padding="10dip"
+                        android:layout_weight="1"/>
+
+                    <EditText
+                        android:id="@+id/username"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint=""
+                        android:maxLines="1"
+                        android:layout_weight="7"/>
+
+                </TableRow>
+
+
+                <TableRow>
+                    <TextView
+                        android:text="Email: "
+                        android:padding="10dip"
+                        android:layout_weight="1"/>
+
+                    <EditText
+                        android:id="@+id/email"
+                        android:hint=""
+                        android:maxLines="1"
+                        android:layout_weight="7"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Phone: "
+                        android:padding="10dip"
+                        android:layout_weight="1"/>
+                    <EditText
+                        android:id="@+id/phone"
+                        android:hint=""
+                        android:maxLines="1"
+                        android:layout_weight="7"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="Address: "
+                        android:padding="10dip"
+                        android:layout_weight="1"/>
+
+                    <EditText
+                        android:id="@+id/address"
+                        android:hint=""
+                        android:maxLines="1"
+                        android:layout_weight="7"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="City: "
+                        android:padding="10dip"
+                        android:layout_weight="1"/>
+                    <EditText
+                        android:id="@+id/city"
+                        android:hint=""
+                        android:maxLength = "10"
+                        android:maxLines="1"
+                        android:layout_weight="7"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="State: "
+                        android:padding="10dip"
+                        android:layout_weight="1"/>
+                    <EditText
+                        android:id="@+id/state"
+                        android:hint=""
+                        android:maxLines="1"
+                        android:layout_weight="7"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="zipcode: "
+                        android:padding="10dip"
+                        android:layout_weight="1"/>
+
+                    <EditText
+                        android:id="@+id/zipcode"
+                        android:hint=""
+                        android:maxLines="1"
+                        android:layout_weight="7"/>
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/updateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/activity_update_profile_list"
+                android:layout_centerHorizontal="true"
+                android:text="POST"
+                android:onClick="updateProfile"/>
+        </RelativeLayout>
+    </ScrollView>
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:bb_tabXmlResource="@xml/bottombar_tabs" />
+</LinearLayout>
+

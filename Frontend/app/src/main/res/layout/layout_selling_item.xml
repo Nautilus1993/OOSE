@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:padding="5dip"
+    android:layout_height="100dp"
+    android:background="#12A8FF">
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/itemIcon"
+        android:layout_width="65dip"
+        android:layout_height="65dip"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="6dip"
+        android:contentDescription="item_image"
+        android:src="@drawable/girl"
+        android:layout_above="@+id/itemPrice">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/itemPrice"
+        android:layout_width="70dip"
+        android:textSize="18sp"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_height="20dip"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_alignParentBottom="true">
+    </TextView>
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="290dip"
+        android:layout_height="20dip"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginStart="15dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/itemIcon">
+    </TextView>
+
+    <TextView
+        android:id="@+id/itemCondition"
+        android:layout_width="145dip"
+        android:layout_height="20dip"
+        android:textSize="18sp"
+        android:layout_alignLeft="@id/itemName"
+        android:layout_below="@+id/itemName"
+        android:layout_toRightOf="@+id/itemIcon">
+    </TextView>
+
+    <TextView
+        android:id="@+id/itemDelivery"
+        android:layout_width="145dip"
+        android:layout_height="20dip"
+        android:textSize="16sp"
+        android:layout_below="@+id/itemName"
+        android:layout_toRightOf="@+id/itemCondition"
+        android:layout_alignRight="@id/itemName">
+    </TextView>
+
+    <TextView
+        android:id="@+id/itemDate"
+        android:layout_width="290dip"
+        android:layout_height="20dip"
+        android:layout_below="@+id/itemCondition"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/itemPrice"
+        android:layout_alignLeft="@id/itemName"
+        android:layout_alignRight="@id/itemName">
+    </TextView>
+
+    <TextView
+        android:id="@+id/itemContacts"
+        android:layout_width="150dip"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/itemDate"
+        android:layout_toRightOf="@+id/itemPrice"
+        android:layout_alignLeft="@id/itemName"
+        android:layout_alignParentBottom="true">
+    </TextView>
+
+
+    <Button android:id="@+id/itemEdit"
+        android:layout_width="55dip"
+        android:layout_toRightOf="@id/itemContacts"
+        android:layout_below="@id/itemDate"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_alignParentBottom="true"
+        android:textSize="10sp"
+        android:text="edit"
+        android:onClick="onEditClicked"/>
+
+
+    <Button android:id="@+id/itemRemove"
+        android:layout_width="60dip"
+        android:layout_toRightOf="@id/itemEdit"
+        android:layout_below="@id/itemDate"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_alignRight="@id/itemName"
+        android:layout_alignParentBottom="true"
+        android:textSize="10sp"
+        android:text="remove"
+        android:onClick="onRemoveClicked"/>
+
+</RelativeLayout>

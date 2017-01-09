@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.team16.oose_project">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".core.GuestHomePage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".registration.email.EmailRegistration" />
+        <activity android:name=".registration.email.SuccessfulEmailRegistration" />
+        <activity android:name=".registration.phone.PhoneRegistration" />
+        <activity android:name=".registration.phone.SuccessfulPhoneRegistration" />
+        <activity android:name=".registration.password.PasswordSetup" />
+        <activity android:name=".registration.password.SuccessfulPasswordSetup" />
+        <activity android:name=".registration.email.EmailCodeVerification" />
+        <activity android:name=".registration.phone.PhoneCodeVerification" />
+        <activity android:name=".login.Login" />
+        <activity android:name=".MyAccount.MyAccountUpdate" />
+        <activity android:name=".MyAccount.MyAccountDisplay" />
+        <activity android:name=".Image.Image" />
+        <activity android:name=".Subcategory.Bedroom" />
+        <activity android:name=".Subcategory.StudyRoom" />
+        <activity android:name=".Subcategory.Kitchen" />
+        <activity android:name=".Subcategory.Bathroom" />
+        <activity android:name=".Subcategory.LivingRoom" />
+        <activity android:name=".Subcategory.Balcony" />
+        <activity android:name=".Subcategory.Children"/>
+        <activity android:name=".Item_latest.ItemList"/>
+        <activity android:name=".sellingList.NewItemActivity"/>
+        <activity android:name=".sellingList.UpdateItemActivity"/>
+        <activity android:name=".sellingList.SellingListDisplayActivity"/>
+        <activity android:name=".wishlist.WishList"/>
+        <activity android:name=".Item_latest.ItemDetail"/>
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+
+>>>>>>> 5080a705d936ce56fd93ea3e6f7b3bdff2c8755a
+    </application>
+
+</manifest>

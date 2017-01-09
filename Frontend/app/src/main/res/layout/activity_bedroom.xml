@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e1e1e1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="#03A9F4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bedroom"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_weight="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Subcategory"
+            android:textColor="#6e6e6e"
+            android:textSize="12sp"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/beds"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:text="Beds"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/bed"
+                    android:onClick="fromSubBedroomToBeds"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/lamps"
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:text="Lamps"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/lamp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/desks"
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:text="Desks"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/desk" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/chairs"
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:text="Chairs"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/chair" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/shelves"
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:text="Shelves"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/shelves" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/carpets"
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:text="Carpets"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/carpet" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/trashbins"
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:text="Trash Bins"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/trashbin" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/hangers"
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:text="Hangers"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/hanger" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <Button
+                    android:id="@+id/bedmroe"
+                    android:layout_height="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:text="More"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/bedmore" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="0"
+        app:bb_tabXmlResource="@xml/bottombar_tabs" />
+</LinearLayout>

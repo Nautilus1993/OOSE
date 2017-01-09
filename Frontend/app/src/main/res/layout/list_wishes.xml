@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#12A8FF">
+
+    <ImageView
+        android:id="@+id/wish_list_thumbnail"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="6dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="6dp"
+        android:scaleType="centerInside"
+        tools:src="@mipmap/ic_launcher"
+        android:contentDescription="description"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="4dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/wish_list_thumbnail"
+        android:layout_toEndOf="@+id/wish_list_thumbnail"
+        android:layout_alignBottom="@+id/wish_list_thumbnail"
+        android:layout_toRightOf="@+id/wish_list_thumbnail">
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/wish_name"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/wish_price"
+            android:layout_below="@+id/wish_name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/wish_condition"
+            android:layout_below="@+id/wish_price"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/wish_available_date"
+            android:layout_below="@+id/wish_condition"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:id="@+id/wish_expire_date"
+            android:layout_below="@+id/wish_available_date"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="Remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/wish_remove"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="#12A8FF" />
+
+        <Button
+            android:text="Detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/wish_detail"
+            android:background="#12A8FF" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

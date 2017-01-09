@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <tabs type="scrollable">
+        <tab
+            id="@+id/tab_none"
+            barColorWhenSelected="#03A9F4"/>
+        <tab
+            id="@+id/tab_post"
+            title="Post"
+            barColorWhenSelected="#03A9F4"/>
+        <tab
+            id="@+id/tab_selling"
+            title="Selling"
+            barColorWhenSelected="#03A9F4"/>
+        <tab
+            id="@+id/tab_home"
+            title="Home"
+            barColorWhenSelected="#03A9F4"/>
+        <tab
+            id="@+id/tab_wishes"
+            title="Wishes"
+            barColorWhenSelected="#03A9F4"/>
+        <tab
+            id="@+id/tab_me"
+            title="Me"
+            barColorWhenSelected="#03A9F4"/>
+    </tabs>
+    <!-- back up colors
+        #F44336
+        #4CAF50
+        #FF5722
+    -->
+</PreferenceScreen>
