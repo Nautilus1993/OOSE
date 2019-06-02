@@ -1,12 +1,12 @@
 # OOSE Project
 
-##Team Info##
+## Team Info
 Yuhang Wang, Beinan Wang, Da Chen, Xiaoxiao Liu, Mengdan Zhang
 
-##Overview##
+## Overview
 Our goal is to develop an used item trading app for the Johns Hopkins community.Allowing the users to find the desired items for the best price in a fast and convenient fashion will be our first priority, In addition, making the app a secure platform will also be our focus. Email and text verifications are required for successful registration. Thus, making sure sellers and buyers using the app are real. Besides the core functionality, extended features such as recommending items based on user's history will be added if we are ahead of our schedule.
 
-##Feature List##
+## Feature List
 1. A user shall be either in user mode or guest mode.
 * Once the app is opened, the default mode for users is guest mode.
 * A user shall be able to change mode between guest mode and user mode at anytime when he/she uses our app by logging in and logging out.
@@ -280,18 +280,18 @@ Our work include both **Client-Side** and **Server-Side** based on Model-View-Co
 
 ![](./Project_Doc/img/System_Architecture/Android.jpg)
 
-####Deployment: 
+#### Deployment: 
 
 + Frond-End: Android Emulator
 + Back-End: Github + Heroku + Travis
 
-####Client (View) : 
+#### Client (View) : 
 
 + Include UI layout and reactful activities.
 + Send http request to server.
 + Receive http response and extract data out.
 
-####Server(Model + Controller) : 
+#### Server(Model + Controller) : 
 
 + Listen on 80 Port. Receive request and send response back.
 + Define the class methods and attributes.
